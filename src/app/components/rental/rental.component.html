@@ -1,0 +1,24 @@
+<h3>KİRALAMALAR</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Marka Adı</th>
+        <th scope="col">Adı Soyadı</th>
+        <th scope="col">Model Yılı</th>
+        <th scope="col">Günlük Fiyatı</th>
+        <th scope="col">Kiralanma Tarihi</th>
+        <th scope="col">Teslim Tarihi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rental of rentals">
+        <th scope="row">{{rental.brandName}}</th>
+        <td>{{rental.firstName+" "+ rental.lastName}}</td>
+        <td>{{rental.modelYear}}</td>
+        <td>{{rental.dailyPrice}} ₺</td>
+        <td>{{rental.rentDate}}</td>
+        <td>{{rental.returnDate == null ? "Henüz Teslim Edilmemiş" : rental.returnDate}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
