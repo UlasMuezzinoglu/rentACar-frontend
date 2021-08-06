@@ -15,6 +15,10 @@ export class SidebarComponent implements OnInit {
   brands: Brand[] = []
   dataLoadedForColor = false
   dataLoadedForBrand = false
+  //
+  currentBrand :Brand;
+  currentColor :Color;
+  //
   constructor(private colorService: ColorService, private brandService : BrandService) { }
 
   ngOnInit(): void {
@@ -36,6 +40,27 @@ export class SidebarComponent implements OnInit {
       this.dataLoadedForBrand = true
     })
     console.log("Method Bitti");
+  }
+  setCurrentBrand(brand:Brand){
+    this.currentBrand = brand
+  }
+  setCurrentColor(color:Color){
+    this.currentColor = color
+  }
+
+  getCurrentBrandClass(brand:Brand){
+    if (brand == this.currentBrand) {
+       return "list-group-item selected"
+    }else{
+      return "list-group-item"
+    }
+  }
+  getCurrentColorClass(color:Color){
+    if (color == this.currentColor) {
+       return "list-group-item selected"
+    }else{
+      return "list-group-item"
+    }
   }
 
 }
