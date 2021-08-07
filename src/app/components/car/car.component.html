@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let car of cars">
-        <th scope="row">{{car.brandName}}</th>
+        <th scope="row" routerLink = "/cars/carDetail/{{car.id}}">{{car.brandName}}</th>
         <td>{{car.colorName}}</td>
         <td>{{car.modelYear}}</td>
         <td>{{car.dailyPrice}} ₺</td>
