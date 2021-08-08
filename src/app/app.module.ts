@@ -17,6 +17,7 @@ import { BrandfilterPipe } from './pipes/brandfilter.pipe';
 import { ColorfilterPipe } from './pipes/colorfilter.pipe';
 import { RentalfilterPipe } from './pipes/rentalfilter.pipe';
 import { TestdateformatPipe } from './pipes/testdateformat.pipe';
+import { FilteredcarComponent } from './components/filteredcar/filteredcar.component';
 
 
 
@@ -32,7 +33,8 @@ import { TestdateformatPipe } from './pipes/testdateformat.pipe';
     BrandfilterPipe,
     ColorfilterPipe,
     RentalfilterPipe,
-    TestdateformatPipe    
+    TestdateformatPipe,
+    FilteredcarComponent    
     
   ],
   imports: [

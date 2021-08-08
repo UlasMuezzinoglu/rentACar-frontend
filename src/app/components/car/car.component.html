@@ -1,6 +1,4 @@
-<div *ngIf="dataLoadedForCar==false" class="spinner-border text-dark" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
+
 
 <div class="row">
 <div class="col-md-3">
@@ -37,6 +35,8 @@
       
     </tbody>
   </table> -->
+
+  <app-filteredcar></app-filteredcar>
    <div class="card" style="width: 18rem;" *ngFor="let car of cars | carfilter:filterText ">
     <img src="{{ carImageBasePath }}{{ getCarImage(car) }}" class="card-img-top" alt="...">
     <div class="card-body">
