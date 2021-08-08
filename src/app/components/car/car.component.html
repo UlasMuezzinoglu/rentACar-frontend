@@ -1,4 +1,22 @@
-<h3 style="text-align: center;">Burada arabalar Listelenecek</h3>
+<div *ngIf="dataLoadedForCar==false" class="spinner-border text-dark" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div class="row">
+
+
+<div class="col-md-3">
+  <app-sidebar></app-sidebar>
+  
+</div>
+<div class="col-md-9">
+ <div class="mb-3">
+<label for="filterText" class="form-label">Markaya Göre Ara</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Example:Audi">
+</div>
+<div *ngIf="filterText.length>0" class="alert alert-success">
+  {{filterText }} aradınız
+</div>
 <table class="table">
     <thead>
       <tr>
@@ -10,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let car of cars">
+      <tr *ngFor="let car of cars | carfilter:filterText ">
         <th scope="row" routerLink = "/cars/carDetail/{{car.id}}">{{car.brandName}}</th>
         <td>{{car.colorName}}</td>
         <td>{{car.modelYear}}</td>
@@ -20,3 +38,5 @@
       
     </tbody>
   </table>
+  
+</div></div>

@@ -19,6 +19,10 @@ export class SidebarComponent implements OnInit {
   currentBrand :Brand;
   currentColor :Color;
   //
+
+  filterTextBrand: string = '';
+  filterTextColor: string = '';
+
   constructor(private colorService: ColorService, private brandService : BrandService) { }
 
   ngOnInit(): void {

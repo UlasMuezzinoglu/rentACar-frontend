@@ -1,3 +1,4 @@
+import { RentalComponent } from './components/rental/rental.component';
 import { CarComponent } from './components/car/car.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -8,7 +9,9 @@ const routes: Routes = [
   {path:"cars", component:CarComponent},
   {path:"cars/brand/:brandId", component:CarComponent},
   {path:"cars/color/:colorId", component:CarComponent},
-  {path:"cars/carDetail/:carId", component:CarDetailComponent}
+  {path:"cars/carDetail/:carId", component:CarDetailComponent},
+  {path:"rentals", component:RentalComponent}
+
 
 ];
 

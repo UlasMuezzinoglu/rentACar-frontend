@@ -1,5 +1,17 @@
 <h3>KİRALAMALAR</h3>
-<table class="table">
+
+<div class="row">
+  <div class="col-md-3">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="col-md-9">
+     <label for="filterText" class="form-label">İsime Göre Ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Example:Ulaş">
+  
+  <div *ngIf="filterText.length>0" class="alert alert-success">
+    {{filterText }} aradınız
+  </div>
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Marka Adı</th>
@@ -11,14 +23,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let rental of rentals">
+      <tr *ngFor="let rental of rentals | rentalfilter:filterText">
         <th scope="row">{{rental.brandName}}</th>
         <td>{{rental.firstName+" "+ rental.lastName}}</td>
         <td>{{rental.modelYear}}</td>
         <td>{{rental.dailyPrice}} ₺</td>
-        <td>{{rental.rentDate}}</td>
-        <td>{{rental.returnDate == null ? "Henüz Teslim Edilmemiş" : rental.returnDate}}</td>
+        <td>{{rental.rentDate | date:'d MMMM y':null:'tr'}}</td>
+        <td>{{rental.returnDate == null ? "Henüz Teslim Edilmemiş" : rental.returnDate | date:'d MMMM y':null:'tr'}}</td>
       </tr>
-      
+
     </tbody>
   </table>
+</div>
+</div>

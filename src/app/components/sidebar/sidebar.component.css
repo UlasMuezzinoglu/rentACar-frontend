@@ -1,3 +1,9 @@
 .selected{
     border-left: 5px solid blue;
 }
+#filterTextBrand{
+    margin-bottom: 1em;
+}
+#filterTextColor{
+    margin-bottom: 1em;
+}

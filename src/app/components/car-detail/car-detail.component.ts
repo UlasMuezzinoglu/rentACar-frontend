@@ -15,6 +15,7 @@ export class CarDetailComponent implements OnInit {
   cars: Car[];
   carImages: CarImage[];
   currentImage:CarImage;
+  data:any;
 
   constructor(private carDetailService:CarDetailService,private activatedRoute:ActivatedRoute) { }
 
@@ -23,9 +24,19 @@ export class CarDetailComponent implements OnInit {
       if (params["carId"]) {
         this.getCarDetail(params["carId"]);
         this.getCarImage(params["carId"]);
+        this.testMetot(params["carId"]);
+
+        
       }
     })
   }
+
+  testMetot(carId:number){
+    this.carDetailService.getCarImageByCarId(carId).subscribe(response=>{
+      this.data = response.data
+    })
+  }
+  
 
   getCarImage(carId:number){
     this.carDetailService.getCarImageByCarId(carId).subscribe(response=>{
