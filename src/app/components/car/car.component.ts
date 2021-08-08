@@ -14,6 +14,9 @@ export class CarComponent implements OnInit {
   dataLoadedForCar = false;
   filterText: string = '';
   carImageBasePath = 'https://localhost:44341'
+  newDate:Date;
+  nowDate:Date = new Date()
+  
   constructor(private carService: CarService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -26,6 +29,10 @@ export class CarComponent implements OnInit {
         this.getCarsByColor(params["colorId"]);
       }else{
         this.getCarsByDetailDto();
+        this.nowDate;
+        console.log(this.nowDate.getFullYear(),this.nowDate.getMonth(),this.nowDate.getDay())
+        console.log('------'+this.nowDate.getDate())
+
       } 
     })
   }
@@ -34,10 +41,24 @@ export class CarComponent implements OnInit {
     console.log("api request Başladı")
     this.carService.getCarsByDetailsDto().subscribe(response => {
       this.cars = response.data;
+
+      
+      this.cars.forEach(car => {
+        
+        //this.newDate = new Date(car.returnDate); //let birthday = new Date('December 17, 1995 03:24:00')
+        //console.log(this.newDate)
+        car.returnDate = new Date(car.returnDate)
+      });
+      
       this.dataLoadedForCar = true
     })
     console.log("Method Bitti2");
   }
+
+
+
+
+
 
   getCarsByBrand(brandId:number) {
     console.log("api request Başladı")

@@ -42,10 +42,14 @@
     <div class="card-body">
       <h5 class="card-title">{{car.brandName}}</h5>
       <p class="card-text">{{car.description}}</p>
-      <p class="card-text">{{car.dailyPrice}}</p>
+      <p class="card-text">Günlük Kiralama Ücreti : {{car.dailyPrice | currency: "TRY":"₺"}}</p>
+      <p class="card-text">{{car.returnDate | date:'d MMMM y':null:'tr'}}</p>
+      
       <div class="row">
         <div class="col-sm-6">
-          <a href="#" class="btn btn-primary">Aracı Kirala</a>
+          
+          <a *ngIf="car.returnDate < nowDate" class="btn btn-primary"> Arabayı Kirala </a>
+          <a *ngIf="car.returnDate > nowDate" style="visibility: hidden">.</a>
         </div>
         <div class="col-sm-6">
           <button routerLink = "/cars/carDetail/{{car.id}}" class="btn btn-primary" >Detayları Gör</button>

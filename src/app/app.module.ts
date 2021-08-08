@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { BrandfilterPipe } from './pipes/brandfilter.pipe';
 import { ColorfilterPipe } from './pipes/colorfilter.pipe';
 import { RentalfilterPipe } from './pipes/rentalfilter.pipe';
+import { TestdateformatPipe } from './pipes/testdateformat.pipe';
 
 
 
@@ -30,7 +31,8 @@ import { RentalfilterPipe } from './pipes/rentalfilter.pipe';
     CarfilterPipe,
     BrandfilterPipe,
     ColorfilterPipe,
-    RentalfilterPipe    
+    RentalfilterPipe,
+    TestdateformatPipe    
     
   ],
   imports: [
