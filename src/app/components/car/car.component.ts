@@ -1,3 +1,4 @@
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrandService } from './../../services/brand.service';
 import { ColorService } from './../../services/color.service';
 import { Brand } from './../../models/brand';
@@ -5,6 +6,7 @@ import { Car } from 'src/app/models/car';
 import { Component, OnInit } from '@angular/core';
 import { CarService } from 'src/app/services/car.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-car',
@@ -20,7 +22,10 @@ export class CarComponent implements OnInit {
   newDate:Date;
   nowDate:Date = new Date()
   
-  constructor(private carService: CarService, private activatedRoute:ActivatedRoute,) { }
+  constructor(private carService: CarService,
+    private activatedRoute:ActivatedRoute,
+    private cartService:CartService,
+    private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     console.log("Made by Coffee And <3")
@@ -97,6 +102,15 @@ export class CarComponent implements OnInit {
       .subscribe((response) => {
         this.cars = response.data;
       });
+  }
+
+  addToCart(car:Car){
+    
+    this.cartService.addToCart(car);
+    //console.log("sepete eklendi",car.description)
+    
+    this.toastrService.success("Sepete Eklendi",car.brandName)
+  
   }
   
 

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeTr from '@angular/common/locales/tr';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,8 +19,9 @@ import { ColorfilterPipe } from './pipes/colorfilter.pipe';
 import { RentalfilterPipe } from './pipes/rentalfilter.pipe';
 import { TestdateformatPipe } from './pipes/testdateformat.pipe';
 import { FilteredcarComponent } from './components/filteredcar/filteredcar.component';
+import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 
-
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,14 +36,22 @@ import { FilteredcarComponent } from './components/filteredcar/filteredcar.compo
     ColorfilterPipe,
     RentalfilterPipe,
     TestdateformatPipe,
-    FilteredcarComponent    
+    FilteredcarComponent,
+    CartSummaryComponent    
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-bottom-right",
+      progressBar:true,
+    }
+    ),
+    BrowserAnimationsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
