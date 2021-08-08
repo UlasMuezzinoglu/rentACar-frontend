@@ -3,11 +3,8 @@
 </div>
 
 <div class="row">
-
-
 <div class="col-md-3">
   <app-sidebar></app-sidebar>
-  
 </div>
 <div class="col-md-9">
  <div class="mb-3">
@@ -17,7 +14,9 @@
 <div *ngIf="filterText.length>0" class="alert alert-success">
   {{filterText }} aradınız
 </div>
-<table class="table">
+
+
+ <!-- <table class="table">
     <thead>
       <tr>
         <th scope="col">Marka Adı</th>
@@ -37,6 +36,21 @@
       </tr>
       
     </tbody>
-  </table>
-  
+  </table> -->
+   <div class="card" style="width: 18rem;" *ngFor="let car of cars | carfilter:filterText ">
+    <img src="{{ carImageBasePath }}{{ getCarImage(car) }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{car.brandName}}</h5>
+      <p class="card-text">{{car.description}}</p>
+      <p class="card-text">{{car.dailyPrice}}</p>
+      <div class="row">
+        <div class="col-sm-6">
+          <a href="#" class="btn btn-primary">Aracı Kirala</a>
+        </div>
+        <div class="col-sm-6">
+          <button routerLink = "/cars/carDetail/{{car.id}}" class="btn btn-primary" >Detayları Gör</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div></div>

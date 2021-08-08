@@ -29,7 +29,13 @@
         <ul class="list-group">
           <li (click)="setCurrentBrand(brand)" routerLink="/cars/brand/{{brand.id}}" *ngFor="let brand of brands |brandfilter:filterTextBrand"
             [class]="getCurrentBrandClass(brand)">{{brand.name}}</li>
+            <!-- <li class="list-group-item">Tüm Markaları Göster {{brands.length}}</li> -->
+            
+         
         </ul>
+        
+          
+       
       </div>
     </div>
   </div>

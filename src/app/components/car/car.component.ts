@@ -1,4 +1,4 @@
-import { Car } from './../../models/car';
+import { Car } from 'src/app/models/car';
 import { Component, OnInit } from '@angular/core';
 import { CarService } from 'src/app/services/car.service';
 import { ActivatedRoute } from '@angular/router';
@@ -13,9 +13,11 @@ export class CarComponent implements OnInit {
   cars: Car[] = []
   dataLoadedForCar = false;
   filterText: string = '';
+  carImageBasePath = 'https://localhost:44341'
   constructor(private carService: CarService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log("Made by Coffee And <3")
     this.activatedRoute.params.subscribe(params => {
       if (params["brandId"]) {
         this.getCarsByBrand(params["brandId"])
@@ -52,5 +54,12 @@ export class CarComponent implements OnInit {
       this.dataLoadedForCar = true
     })
     console.log("Method Bitti");
+  }
+  getCarImage(car:Car){
+    if (car.imagePath) {
+      return car.imagePath;
+    } else {
+      return '/images/default.png';
+    }
   }
 }
