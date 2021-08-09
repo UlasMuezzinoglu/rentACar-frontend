@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
@@ -17,7 +18,9 @@ export class CarDetailComponent implements OnInit {
   currentImage:CarImage;
   data:any;
 
-  constructor(private carDetailService:CarDetailService,private activatedRoute:ActivatedRoute) { }
+  constructor(private carDetailService:CarDetailService,
+    private activatedRoute:ActivatedRoute,
+    private titleService:Title) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -25,7 +28,7 @@ export class CarDetailComponent implements OnInit {
         this.getCarDetail(params["carId"]);
         this.getCarImage(params["carId"]);
         this.testMetot(params["carId"]);
-
+        this.titleService.setTitle("Araç Detayları");
         
       }
     })

@@ -23,6 +23,9 @@ import { CartSummaryComponent } from './components/cart-summary/cart-summary.com
 
 import { ToastrModule } from 'ngx-toastr';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { ManagementcrudComponent } from './components/managementcrud/managementcrud.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     TestdateformatPipe,
     FilteredcarComponent,
     CartSummaryComponent,
-    CarAddComponent    
+    CarAddComponent,
+    BrandAddComponent,
+    ColorAddComponent,
+    ManagementcrudComponent    
     
   ],
   imports: [

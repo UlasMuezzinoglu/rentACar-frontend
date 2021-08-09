@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrandService } from './../../services/brand.service';
 import { ColorService } from './../../services/color.service';
@@ -25,25 +26,32 @@ export class CarComponent implements OnInit {
   constructor(private carService: CarService,
     private activatedRoute:ActivatedRoute,
     private cartService:CartService,
-    private toastrService:ToastrService) { }
+    private toastrService:ToastrService,
+    private titleService:Title) { }
 
   ngOnInit(): void {
+    
     console.log("Made by Coffee And <3")
     this.activatedRoute.params.subscribe(params => {
 
       if (params['brandId'] && params['colorId']) {
         this.getCarsByBrandIdAndColorId(params['brandId'], params['colorId']);
+        this.titleService.setTitle("Araçlar");
       }
 
       else if(params["colorId"]){
         this.getCarsByColor(params["colorId"]);
+        this.titleService.setTitle("Araçlar");
+
       }
 
       else if (params["brandId"]) {
         this.getCarsByBrand(params["brandId"])
+        this.titleService.setTitle("Araçlar");
       }
       else{
         this.getCarsByDetailDto();
+        this.titleService.setTitle("Anasayfa");
         //this.nowDate;
       } 
     })

@@ -1,0 +1,156 @@
+<div class="row">
+    <div class="col-sm-4">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-sm-8">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Araba İşlemleri
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        
+                        <div class="content">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="title">Araba Ekle</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="carAddForm">
+                                            <div class="mb-3">
+                                                <label for="modelYear">Model Yılı</label>
+                                                <div class="form-group">
+                                                    <input type="number" id="modelYear" formControlName="modelYear"
+                                                        class="form-control" placeholder="Model Yılı" />
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="brandId">Marka</label>
+                                                <div class="form-group">
+                                                    <input type="number" id="brandId" formControlName="brandId"
+                                                        class="form-control" placeholder="Marka İd" />
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="colorId">Renk</label>
+                                                <div class="form-group">
+                                                    <input type="number" id="colorId" formControlName="colorId"
+                                                        class="form-control" placeholder="Renk İd" />
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="dailyPrice">Günlük Kirası</label>
+                                                <div class="form-group">
+                                                    <input type="number" id="dailyPrice"
+                                                        formControlName="dailyPrice" class="form-control"
+                                                        placeholder="Günlük Kirası" />
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="description">Araç Açıklaması</label>
+                                                <div class="form-group">
+                                                    <input type="text" id="description"
+                                                        formControlName="description" class="form-control"
+                                                        placeholder="Açıklama" />
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-fill btn-primary" (click)="addCar()">Arabayı
+                                            Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Renk İşlemleri
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="content">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="title">Renk Ekle</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form [formGroup]="colorAddForm">
+                                                <div class="mb-3">
+                                                    <label for="crname">Renk Adı</label>
+                                                    <div class="form-group">
+                                                        <input type="text" id="crname" formControlName="name"
+                                                            class="form-control" placeholder="Renk" />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-fill btn-primary" (click)="addColor()">Rengi
+                                                Ekle</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Marka İşlemleri
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="content">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="title">Marka Ekle</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="brandAddForm">
+                                            <div class="mb-3">
+                                                <label for="brname">Marka Adı</label>
+                                                <div class="form-group">
+                                                    <input type="text" id="brname" formControlName="name"
+                                                        class="form-control" placeholder="Marka" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-fill btn-primary" (click)="addBrand()">Markayı
+                                            Ekle</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
