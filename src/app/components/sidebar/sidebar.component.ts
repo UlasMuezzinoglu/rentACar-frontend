@@ -30,20 +30,16 @@ export class SidebarComponent implements OnInit {
     this.getBrands();
   }
   getColors() {
-    console.log("api request Başladı")
     this.colorService.getColors().subscribe(response => {
       this.colors = response.data;
       this.dataLoadedForColor = true
     })
-    console.log("Method Bitti");
   }
   getBrands() {
-    console.log("api request Başladı")
     this.brandService.getBrands().subscribe(response => {
       this.brands = response.data;
       this.dataLoadedForBrand = true
     })
-    console.log("Method Bitti");
   }
   setCurrentBrand(brand:Brand){
     this.currentBrand = brand

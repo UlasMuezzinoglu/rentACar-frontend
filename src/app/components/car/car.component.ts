@@ -50,7 +50,6 @@ export class CarComponent implements OnInit {
   }
 
   getCarsByDetailDto() {
-    console.log("api request Başladı")
     this.carService.getCarsByDetailsDto().subscribe(response => {
       this.cars = response.data;
 
@@ -64,7 +63,6 @@ export class CarComponent implements OnInit {
       
       this.dataLoadedForCar = true
     })
-    console.log("Method Bitti2");
   }
 
 
@@ -73,20 +71,16 @@ export class CarComponent implements OnInit {
 
 
   getCarsByBrand(brandId:number) {
-    console.log("api request Başladı")
     this.carService.getCarsByBrand(brandId).subscribe(response => {
       this.cars = response.data;
       this.dataLoadedForCar = true
     })
-    console.log("Method Bitti");
   }
   getCarsByColor(colorId:number) {
-    console.log("api request Başladı")
     this.carService.getCarsByColor(colorId).subscribe(response => {
       this.cars = response.data;
       this.dataLoadedForCar = true
     })
-    console.log("Method Bitti");
   }
   getCarImage(car:Car){
     if (car.imagePath) {

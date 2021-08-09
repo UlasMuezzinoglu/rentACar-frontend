@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeTr from '@angular/common/locales/tr';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +14,6 @@ import { CarComponent } from './components/car/car.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { CarfilterPipe } from './pipes/carfilter.pipe';
-import { FormsModule } from '@angular/forms';
 import { BrandfilterPipe } from './pipes/brandfilter.pipe';
 import { ColorfilterPipe } from './pipes/colorfilter.pipe';
 import { RentalfilterPipe } from './pipes/rentalfilter.pipe';
@@ -22,6 +22,7 @@ import { FilteredcarComponent } from './components/filteredcar/filteredcar.compo
 import { CartSummaryComponent } from './components/cart-summary/cart-summary.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { CarAddComponent } from './components/car-add/car-add.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ToastrModule } from 'ngx-toastr';
     RentalfilterPipe,
     TestdateformatPipe,
     FilteredcarComponent,
-    CartSummaryComponent    
+    CartSummaryComponent,
+    CarAddComponent    
     
   ],
   imports: [
@@ -50,7 +52,8 @@ import { ToastrModule } from 'ngx-toastr';
       progressBar:true,
     }
     ),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
     
   ],
   providers: [],

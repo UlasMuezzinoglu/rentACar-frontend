@@ -8,4 +8,6 @@ export interface Car {
     description: string;
     imagePath:string;
     returnDate:Date;
+    brandId:number;
+    colorId:number;
 }

@@ -1,3 +1,4 @@
+import { CarAddComponent } from './components/car-add/car-add.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { CarComponent } from './components/car/car.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path:"cars/carDetail/:carId", component:CarDetailComponent},
   {path:"rentals", component:RentalComponent},
   {path:"cars/filter/:brandId/:colorId",component:CarComponent},
+  {path:"cars/add", component:CarAddComponent},
+
 
 
 ];
