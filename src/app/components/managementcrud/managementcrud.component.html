@@ -1,6 +1,11 @@
 <div class="row">
     <div class="col-sm-4">
         <app-sidebar></app-sidebar>
+
+        
+        
+
+
     </div>
     <div class="col-sm-8">
         <div class="accordion" id="accordionExample">
@@ -14,7 +19,7 @@
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        
+
                         <div class="content">
                             <div class="col-md-12">
                                 <div class="card">
@@ -50,18 +55,16 @@
                                             <div class="mb-3">
                                                 <label for="dailyPrice">Günlük Kirası</label>
                                                 <div class="form-group">
-                                                    <input type="number" id="dailyPrice"
-                                                        formControlName="dailyPrice" class="form-control"
-                                                        placeholder="Günlük Kirası" />
+                                                    <input type="number" id="dailyPrice" formControlName="dailyPrice"
+                                                        class="form-control" placeholder="Günlük Kirası" />
                                                 </div>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="description">Araç Açıklaması</label>
                                                 <div class="form-group">
-                                                    <input type="text" id="description"
-                                                        formControlName="description" class="form-control"
-                                                        placeholder="Açıklama" />
+                                                    <input type="text" id="description" formControlName="description"
+                                                        class="form-control" placeholder="Açıklama" />
                                                 </div>
                                             </div>
 
@@ -124,29 +127,29 @@
                         data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <div class="content">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5 class="title">Marka Ekle</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <form [formGroup]="brandAddForm">
-                                            <div class="mb-3">
-                                                <label for="brname">Marka Adı</label>
-                                                <div class="form-group">
-                                                    <input type="text" id="brname" formControlName="name"
-                                                        class="form-control" placeholder="Marka" />
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="title">Marka Ekle</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <form [formGroup]="brandAddForm">
+                                                <div class="mb-3">
+                                                    <label for="brname">Marka Adı</label>
+                                                    <div class="form-group">
+                                                        <input type="text" id="brname" formControlName="name"
+                                                            class="form-control" placeholder="Marka" />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-footer">
-                                        <button class="btn btn-fill btn-primary" (click)="addBrand()">Markayı
-                                            Ekle</button>
+                                            </form>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-fill btn-primary" (click)="addBrand()">Markayı
+                                                Ekle</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -154,3 +157,56 @@
         </div>
 
     </div>
+    <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Marka Adı</th>
+        <th scope="col">Marka Id</th>
+        <th scope="col">işlem</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let brand of brands ">
+          
+        <th scope="row" >{{brand.name}}</th>
+        <td>{{brand.id}}</td>
+        <td>
+            <!-- Button trigger modal -->
+            
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" [attr.data-bs-target]="customIdd(brand)">
+            Markayı Güncelle / Sil
+        </button>
+<!-- id="{{brand.id | getidwithchar}}" -->
+        <!-- Modal -->
+        <div class="modal fade " [attr.id]="customIddd(brand)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Markayı Güncelle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6"><input disabled type="number" placeholder="" readonly value="{{brand.id}}">
+                                <input type="text" placeholder="Marka Adı" value="{{brand.name}}" ></div>
+                            <div class="col-sm-6">
+                                <button type="button" (click)="updateBrand()" style="display: block; width: 100%;" class="btn btn-warning" >Güncelle</button>
+                        <button type="button" (click)="deleteBrand()" style="display: block; width: 100%;" class="btn btn-danger" >Sil</button>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </td>
+        
+      </tr>
+      
+    </tbody>
+  </table>

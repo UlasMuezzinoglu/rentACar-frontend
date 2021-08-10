@@ -26,6 +26,8 @@ import { CarAddComponent } from './components/car-add/car-add.component';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { ManagementcrudComponent } from './components/managementcrud/managementcrud.component';
+import { GetidwithsharpPipe } from './pipes/getidwithsharp.pipe';
+import { GetidwithcharPipe } from './pipes/getidwithchar.pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ManagementcrudComponent } from './components/managementcrud/managementc
     CarAddComponent,
     BrandAddComponent,
     ColorAddComponent,
-    ManagementcrudComponent    
+    ManagementcrudComponent,
+    GetidwithsharpPipe,
+    GetidwithcharPipe    
     
   ],
   imports: [

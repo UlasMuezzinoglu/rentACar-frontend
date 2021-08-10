@@ -1,6 +1,7 @@
+import { Brand } from './../../models/brand';
 import { CarService } from './../../services/car.service';
 import { ColorService } from 'src/app/services/color.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BrandService } from 'src/app/services/brand.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder ,FormControl ,Validators } from '@angular/forms';
@@ -16,7 +17,18 @@ export class ManagementcrudComponent implements OnInit {
   carAddForm:FormGroup;
   brandAddForm:FormGroup;
   colorAddForm:FormGroup;
+
+  //
+  brands:Brand[] = []
+  //
   
+  flag:boolean = false
+  
+  @Input() public index :any
+  public customId: string
+
+  
+
   constructor(private formbuilder:FormBuilder,
     private brandService:BrandService,
     private colorService:ColorService,
@@ -32,6 +44,9 @@ export class ManagementcrudComponent implements OnInit {
     this.createColorAddForm();
     this.createCarAddForm();
     this.titleService.setTitle("Yönetim");
+    this.getBrands();
+    
+    
   }
 
   createCarAddForm(){
@@ -106,4 +121,32 @@ export class ManagementcrudComponent implements OnInit {
       this.toastrService.error("Formunuz Eksik","Hata !")
     }
   }
+
+  getBrands(){
+    this.brandService.getBrands().subscribe(response => {
+      this.brands = response.data;
+      
+    })
+  }
+  customIdd(brand:Brand) {
+    return "#a"+brand.id.toString()
+  }
+  customIddd(brand:Brand) {
+    return "a"+brand.id.toString()
+  }
+
+  updateBrand(){
+    this.toastrService.error("Henüz Güncelleme Metotu Yazmadın Unutma Yazmayı","Unutma !")
+  }
+  deleteBrand(){
+    this.toastrService.error("Henüz Silme Metotu Yazmadın Unutma Yazmayı","Unutma !")
+  }
+
+
+
+
+
+
+
+
 }
