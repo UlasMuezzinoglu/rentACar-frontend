@@ -7,6 +7,7 @@ import { BrandService } from 'src/app/services/brand.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder ,FormControl ,Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Color } from 'src/app/models/color';
 
 @Component({
   selector: 'app-managementcrud',
@@ -22,9 +23,12 @@ export class ManagementcrudComponent implements OnInit {
   colorAddForm:FormGroup;
   //end of addForms
 
-  //deleteForms
+  //deleteForms (also update)
   brandDeleteForm:FormGroup;
-  //end of deleteForms
+  colorDeleteForm:FormGroup;
+  //end of deleteForms (also update)
+  
+  
 
   //brandd:Brand = {"id": 11, "name" : "Bmw"}
 
@@ -33,10 +37,13 @@ export class ManagementcrudComponent implements OnInit {
 
   //
   brands:Brand[] = []
+  colors:Color[] = []
   //
 
+  //
   currentbrand : Brand
-  
+  currentcolor : Color
+  //  
 
   
 
@@ -45,25 +52,31 @@ export class ManagementcrudComponent implements OnInit {
     private colorService:ColorService,
     private carService:CarService,
     private toastrService:ToastrService,
-    private titleService:Title,
-    private cdRef:ChangeDetectorRef) {  }
+    private titleService:Title
+    ) {  }
     
 
      
 
   ngOnInit(): void {
-    
+    this.titleService.setTitle("Yönetim");
     this.createBrandAddForm();
     this.createColorAddForm();
     this.createCarAddForm();
     this.createBrandDeleteForm();
-    
+    this.createBrandUpdateForm();
+    this.createColorDeleteForm();
+    this.createColorUpdateForm();
 
-    this.titleService.setTitle("Yönetim");
+    
     this.getBrands();
+    this.getColors();
     
     
   }
+
+
+  // form create
 
   createCarAddForm(){
     this.carAddForm = this.formbuilder.group({
@@ -93,14 +106,92 @@ export class ManagementcrudComponent implements OnInit {
     })
     
   }
+  createBrandUpdateForm(){
+    this.brandDeleteForm = this.formbuilder.group({
+      id: ["",Validators.required],
+      name: ["",Validators.required]
+    })
+    
+  }
+
+  //
+  createColorDeleteForm(){
+    this.colorDeleteForm = this.formbuilder.group({
+      id: ["",Validators.required],
+      name: ["",Validators.required]
+    })
+    
+  }
+  createColorUpdateForm(){
+    this.colorDeleteForm = this.formbuilder.group({
+      id: ["",Validators.required],
+      name: ["",Validators.required]
+    })
+    
+  }
+
+  
+  // form create end
+
+
+
+
+
+  
 
   
   
 
 
-
-
-
+  // action Methods
+  deleteBrand(){
+    if (this.brandDeleteForm.valid) {
+      let brandModel = Object.assign({},this.brandDeleteForm.value)
+      this.brandService.delete(brandModel).subscribe(response => {
+        this.toastrService.success(response.message,brandModel.name)
+      })
+    }else{
+      this.toastrService.error("Formunuz Eksik","Hata !")
+    }
+  }
+  //
+  updateBrand(){
+    
+    if (this.brandDeleteForm.valid) {
+      let brandModel = Object.assign({},this.brandDeleteForm.value)
+      this.brandService.update(brandModel).subscribe(response => {
+        this.toastrService.success(response.message,brandModel.name)
+      })
+    }else{
+      this.toastrService.error("Formunuz Eksik","Hata !")
+    }
+  }
+  //
+  //Color
+  deleteColor(){
+    if (this.colorDeleteForm.valid) {
+      let colorModel = Object.assign({},this.colorDeleteForm.value)
+      this.colorService.delete(colorModel).subscribe(response => {
+        this.toastrService.success(response.message,colorModel.name)
+      })
+    }else{
+      this.toastrService.error("Formunuz Eksik","Hata !")
+    }
+  }
+  //
+  updateColor(){
+    
+    if (this.colorDeleteForm.valid) {
+      let colorModel = Object.assign({},this.colorDeleteForm.value)
+      this.colorService.update(colorModel).subscribe(response => {
+        this.toastrService.success(response.message,colorModel.name)
+      })
+    }else{
+      this.toastrService.error("Formunuz Eksik","Hata !")
+    }
+  }
+  //
+  //
   addCar(){
     if (this.carAddForm.valid) {
       let carModel = Object.assign({},this.carAddForm.value)
@@ -152,52 +243,51 @@ export class ManagementcrudComponent implements OnInit {
       this.toastrService.error("Formunuz Eksik","Hata !")
     }
   }
+  // action Methods end
 
+  // get methots
   getBrands(){
     this.brandService.getBrands().subscribe(response => {
       this.brands = response.data;
-      
     })
   }
-  customIdd(brand:Brand) {
-    
+  getColors(){
+    this.colorService.getColors().subscribe(response => {
+      this.colors = response.data;
+    })
+  }
+  // get methots end
+
+  
+  // Custom Methods
+  //for brand
+  customIddForBrand(brand:Brand) {
     return "#a"+brand.id.toString()
   }
-  customIddd(brand:Brand) {
-    
-    
+  customIdddForBrand(brand:Brand) {
     return "a"+brand.id.toString()
   }
-  getBrandItemId(brand:Brand){
-    return brand.id.toString()
+  //for color
+  customIddForColor(color:Color) {
+    return "#a"+color.id.toString()
   }
+  customIdddForColor(color:Color) {
+    return "a"+color.id.toString()
+  }
+
+
+  // getBrandItemId(brand:Brand){
+  //   return brand.id.toString()
+  // }
   markayiGetir(brand:Brand){
     this.currentbrand = brand
     this.brandDeleteForm.controls['name'].setValue(this.currentbrand.name)
     this.brandDeleteForm.controls['id'].setValue(this.currentbrand.id)
   }
-
-  
-  deleteBrand(){
-    if (this.brandDeleteForm.valid) {
-      let brandModel = Object.assign({},this.brandDeleteForm.value)
-      this.brandService.delete(brandModel).subscribe(response => {
-        this.toastrService.success(response.message,brandModel.name)
-      })
-    }else{
-      this.toastrService.error("Formunuz Eksik","Hata !")
-    }
+  rengiGetir(color:Color){
+    this.currentcolor = color
+    this.colorDeleteForm.controls['name'].setValue(this.currentcolor.name)
+    this.colorDeleteForm.controls['id'].setValue(this.currentcolor.id)
   }
-
-  updateBrand(){
-    this.toastrService.error("Henüz Güncelleme Metotu Yazmadın Unutma Yazmayı","Unutma !")
-  }
-
-
-
-
-
-
-
-
+  // Custom Methods end
 }
