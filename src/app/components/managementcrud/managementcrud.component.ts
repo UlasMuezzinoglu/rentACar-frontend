@@ -1,3 +1,4 @@
+import { ChangeDetectorRef } from '@angular/core';
 import { Brand } from './../../models/brand';
 import { CarService } from './../../services/car.service';
 import { ColorService } from 'src/app/services/color.service';
@@ -14,18 +15,28 @@ import { Title } from '@angular/platform-browser';
 })
 export class ManagementcrudComponent implements OnInit {
 
+  //forms
+  //addForms
   carAddForm:FormGroup;
   brandAddForm:FormGroup;
   colorAddForm:FormGroup;
+  //end of addForms
+
+  //deleteForms
+  brandDeleteForm:FormGroup;
+  //end of deleteForms
+
+  //brandd:Brand = {"id": 11, "name" : "Bmw"}
+
+  
+
 
   //
   brands:Brand[] = []
   //
+
+  currentbrand : Brand
   
-  flag:boolean = false
-  
-  @Input() public index :any
-  public customId: string
 
   
 
@@ -34,15 +45,20 @@ export class ManagementcrudComponent implements OnInit {
     private colorService:ColorService,
     private carService:CarService,
     private toastrService:ToastrService,
-    private titleService:Title) {  }
+    private titleService:Title,
+    private cdRef:ChangeDetectorRef) {  }
     
 
      
 
   ngOnInit(): void {
+    
     this.createBrandAddForm();
     this.createColorAddForm();
     this.createCarAddForm();
+    this.createBrandDeleteForm();
+    
+
     this.titleService.setTitle("Yönetim");
     this.getBrands();
     
@@ -69,6 +85,21 @@ export class ManagementcrudComponent implements OnInit {
       name: ["",Validators.required]
     })
   }
+
+  createBrandDeleteForm(){
+    this.brandDeleteForm = this.formbuilder.group({
+      id: ["",Validators.required],
+      name: ["",Validators.required]
+    })
+    
+  }
+
+  
+  
+
+
+
+
 
   addCar(){
     if (this.carAddForm.valid) {
@@ -129,17 +160,37 @@ export class ManagementcrudComponent implements OnInit {
     })
   }
   customIdd(brand:Brand) {
+    
     return "#a"+brand.id.toString()
   }
   customIddd(brand:Brand) {
+    
+    
     return "a"+brand.id.toString()
+  }
+  getBrandItemId(brand:Brand){
+    return brand.id.toString()
+  }
+  markayiGetir(brand:Brand){
+    this.currentbrand = brand
+    this.brandDeleteForm.controls['name'].setValue(this.currentbrand.name)
+    this.brandDeleteForm.controls['id'].setValue(this.currentbrand.id)
+  }
+
+  
+  deleteBrand(){
+    if (this.brandDeleteForm.valid) {
+      let brandModel = Object.assign({},this.brandDeleteForm.value)
+      this.brandService.delete(brandModel).subscribe(response => {
+        this.toastrService.success(response.message,brandModel.name)
+      })
+    }else{
+      this.toastrService.error("Formunuz Eksik","Hata !")
+    }
   }
 
   updateBrand(){
     this.toastrService.error("Henüz Güncelleme Metotu Yazmadın Unutma Yazmayı","Unutma !")
-  }
-  deleteBrand(){
-    this.toastrService.error("Henüz Silme Metotu Yazmadın Unutma Yazmayı","Unutma !")
   }
 
 
