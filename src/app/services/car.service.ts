@@ -5,9 +5,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseModel } from '../models/responseModel';
 
+var headers = new Headers();
+headers.append("Authorization", "Bearer "+localStorage.getItem("token"));
 @Injectable({
   providedIn: 'root'
 })
+
 export class CarService {
 
   apiUrl = "https://localhost:44341/api/"
@@ -32,7 +35,12 @@ export class CarService {
     let newPath = this.apiUrl + "Cars/getbycoloridandbrandid?colorId="+colorId+"&brandId="+brandId 
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
+
+  
+
   add(car:Car) :Observable<ResponseModel> {
     return this.httpClient.post<ResponseModel>(this.apiUrl+"Cars/add",car)
+
+    //return this.httpClient.post<ResponseModel>(this.apiUrl+"Cars/add",car,{headers: {"Authorization": "Bearer "+localStorage.getItem("token")}})
   }
 }

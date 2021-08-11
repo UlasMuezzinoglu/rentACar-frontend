@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localeTr from '@angular/common/locales/tr';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -28,6 +28,9 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
 import { ManagementcrudComponent } from './components/managementcrud/managementcrud.component';
 import { GetidwithsharpPipe } from './pipes/getidwithsharp.pipe';
 import { GetidwithcharPipe } from './pipes/getidwithchar.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,9 @@ import { GetidwithcharPipe } from './pipes/getidwithchar.pipe';
     ColorAddComponent,
     ManagementcrudComponent,
     GetidwithsharpPipe,
-    GetidwithcharPipe    
+    GetidwithcharPipe,
+    LoginComponent,
+    FooterComponent    
     
   ],
   imports: [
@@ -66,7 +71,11 @@ import { GetidwithcharPipe } from './pipes/getidwithchar.pipe';
     ReactiveFormsModule
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

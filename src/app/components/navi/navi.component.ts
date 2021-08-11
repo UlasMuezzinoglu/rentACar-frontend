@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -13,11 +14,19 @@ export class NaviComponent implements OnInit {
   flagForAnasayfa:boolean = false
   flagForKiralamalar:boolean = false
   
-  constructor() { }
+
+
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
     
   }
+  
+  isSigned() : boolean{
+    return this.authService.isAuthenticated();
+  }
+
+
   menuClassAnasayfa(){
     if (this.flagForAnasayfa) {
       return "nav-link active"
