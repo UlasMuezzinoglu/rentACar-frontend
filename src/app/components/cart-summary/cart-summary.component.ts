@@ -12,6 +12,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartSummaryComponent implements OnInit {
 
   cartItems: CartItem[] = [];
+  totalPrice: number = 0
   constructor(private cartService:CartService,
     private toastrService:ToastrService) { }
 
@@ -27,5 +28,6 @@ export class CartSummaryComponent implements OnInit {
     //console.log(car.description+" "+"Sepetten silindi")
     this.toastrService.error(car.brandName +" "+ "Başarı ile Sepetten Silindi","Silindi ! ");
   }
-
+  
+  
 }

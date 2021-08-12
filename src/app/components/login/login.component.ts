@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private title:Title,
     private authService:AuthService,
-    private toastrService:ToastrService) { }
+    private toastrService:ToastrService,private router:Router) { }
 
   ngOnInit(): void {
     this.title.setTitle("Giriş Ekranı")
@@ -40,9 +41,10 @@ export class LoginComponent implements OnInit {
       let loginModel = Object.assign({},this.loginForm.value)
 
       this.authService.login(loginModel).subscribe(response =>{
-        this.toastrService.success(response.message)
-        console.log(response)
+        this.toastrService.success("Anasayfaya Yönlendiriliyorsunuz","Giriş Başarılı !")
+        //console.log(response)
         localStorage.setItem("token",response.data.token)
+        this.router.navigate(["cars"])
       },responseError =>{
         this.toastrService.error(responseError.error)
       })

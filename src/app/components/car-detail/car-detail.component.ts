@@ -1,3 +1,5 @@
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from './../../services/cart.service';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -18,9 +20,13 @@ export class CarDetailComponent implements OnInit {
   currentImage:CarImage;
   data:any;
 
+  nowDate:Date = new Date()
+
   constructor(private carDetailService:CarDetailService,
     private activatedRoute:ActivatedRoute,
-    private titleService:Title) { }
+    private titleService:Title,
+    private cartService:CartService,
+    private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -49,6 +55,12 @@ export class CarDetailComponent implements OnInit {
   getCarDetail(carId: number) {
     this.carDetailService.getCarDetail(carId).subscribe(response=>{
       this.cars = response.data
+      this.cars.forEach(car => {
+        
+        //this.newDate = new Date(car.returnDate); //let birthday = new Date('December 17, 1995 03:24:00')
+        //console.log(this.newDate)
+        car.returnDate = new Date(car.returnDate)
+      });
     })
   }
 
@@ -84,5 +96,12 @@ export class CarDetailComponent implements OnInit {
     this.currentImage = image;
   }
 
-
+  addToCart(car:Car){
+    
+    this.cartService.addToCart(car);
+    //console.log("sepete eklendi",car.description)
+    
+    this.toastrService.success("Sepete Eklendi",car.brandName)
+  
+  }
 }

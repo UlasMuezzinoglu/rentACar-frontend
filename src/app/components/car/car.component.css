@@ -3,9 +3,13 @@
     margin-left: 1em;
     width: 29% !important;
     margin-bottom: 1em;
+    margin-top: 1em;
     
 }
 #btn-detaylar{
    margin-left: auto;
    margin-right: auto;
+}
+#cardHeader{
+    height: 13rem;
 }

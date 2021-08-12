@@ -1,80 +1,117 @@
-<div 
-  id="carouselExampleIndicators"
-  class="carousel slide"
-  data-bs-ride="carousel"
->
-  <div class="carousel-indicators">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+</svg>
+
+<div class="row" *ngFor="let car of cars"> 
+  <div *ngIf="car.returnDate > nowDate"  class="alert alert-warning d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+      Bu Araba Kiralanamaz :( Çünkü Şu an Kirada... belki şu an birileri bu araba ile drift atıyor... geziyor tozuyor anlıyor musun geziyorrrrrrr ben tam 7 aydır evdeyim... keşke geliştirici yerine emlakçı olsaydım... :(
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div 
+    id="carouselExampleIndicators"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-indicators">
+      <button
+        *ngFor="let image of carImages; let i = index"
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        attr.data-bs-slide-to="{{ i }}"
+        [class]="getButtonClass(image)"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+    </div>
+  
+    <div class="carousel-inner">
+      <div *ngFor="let image of carImages" [class]="getCurrentImageClass(image)">
+        <img
+        src="{{getPath()+image.imagePath}}"
+          class="d-block w-100"
+          width="700"
+          height="520"
+          alt="Image"
+        >
+      </div>
+      <div *ngIf="data?.length == 0">
+        <img
+        src="https://localhost:44341/images/default.png"
+          class="d-block w-100"
+          width="700"
+          height="520"
+          alt="Image"
+        >
+      </div>
+    </div>
+    
     <button
-      *ngFor="let image of carImages; let i = index"
+      class="carousel-control-prev"
       type="button"
       data-bs-target="#carouselExampleIndicators"
-      attr.data-bs-slide-to="{{ i }}"
-      [class]="getButtonClass(image)"
-      aria-current="true"
-      aria-label="Slide 1"
-    ></button>
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-
-  <div class="carousel-inner">
-    <div *ngFor="let image of carImages" [class]="getCurrentImageClass(image)">
-      <img
-      src="{{getPath()+image.imagePath}}"
-        class="d-block w-100"
-        width="700"
-        height="520"
-        alt="Image"
-      >
-    </div>
-    <div *ngIf="data?.length == 0">
-      <img
-      src="https://localhost:44341/images/default.png"
-        class="d-block w-100"
-        width="700"
-        height="520"
-        alt="Image"
-      >
+  </div>
+  <div class="col-sm-6">
+    <div class="col-lg" >
+      <h1 class="display-1 fw-bold">{{car.brandName}}</h1>
+      <h2  class="display-3 fw-light">
+        <span style="visibility: hidden;">açıklaması</span>
+        <span class="border border-secondary rounded-1 px-3">
+          {{car.modelYear}}
+        </span>
+      </h2>
+      <div>
+        <h6 class="display-4 fw-light">Açıklaması</h6>
+        {{car.description}} 
+      </div>
+      <h4>Sadece {{car.dailyPrice | currency: "TRY":"₺"}}</h4>
+      <p>Parammmm olsaaa daaaa ben alsaaaaaaammmmmmmmmmmmm</p>
+      
+      
+      <a *ngIf="car.returnDate < nowDate" (click)="addToCart(car)" class="btn btn-warning"> Arabayı Kirala </a>
     </div>
   </div>
-  
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExampleIndicators"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="table-responsive-md">
-  <table class="table table-striped table-hover table-bordered"  *ngFor="let car of cars">
-    <!-- <thead>
-      <tr>
-        <th>Marka</th>
-        <th>Renk</th>
-        <th>Model Yılı</th>
-        <th>Günlük Fiyat</th>
-        <th>Açıklama</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let car of cars">
-        <td>{{ car.brandName }}</td>
-        <td>{{ car.colorName }}</td>
-        <td>{{ car.modelYear }}</td>
-        <td>{{ car.dailyPrice | currency:'₺'}}</td>
-        <td>{{ car.description }}</td>
-      </tr>
-    </tbody> -->
+  <!-- <table class="table table-striped table-hover table-bordered"  *ngFor="let car of cars">
+    
     <thead>
       <tr>
         <th></th>
@@ -104,4 +141,4 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->

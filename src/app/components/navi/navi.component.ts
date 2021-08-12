@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -16,7 +18,7 @@ export class NaviComponent implements OnInit {
   
 
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,private router:Router,private toastrService : ToastrService) { }
 
   ngOnInit(): void {
     
@@ -24,6 +26,16 @@ export class NaviComponent implements OnInit {
   
   isSigned() : boolean{
     return this.authService.isAuthenticated();
+  }
+  isNotSigned() : boolean{
+    return this.authService.isAuthenticated();
+  }
+
+
+  logOut(){
+    this.router.navigate(["cars"])
+    this.toastrService.warning("Çıkış Yapıldı...")
+    localStorage.removeItem("token")
   }
 
 

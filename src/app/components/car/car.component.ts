@@ -47,6 +47,7 @@ export class CarComponent implements OnInit {
 
       else if (params["brandId"]) {
         this.getCarsByBrand(params["brandId"])
+        
         this.titleService.setTitle("Araçlar");
       }
       else{
@@ -73,20 +74,27 @@ export class CarComponent implements OnInit {
     })
   }
 
-
-
-
-
-
   getCarsByBrand(brandId:number) {
     this.carService.getCarsByBrand(brandId).subscribe(response => {
       this.cars = response.data;
+      this.cars.forEach(car => {
+        
+        //this.newDate = new Date(car.returnDate); //let birthday = new Date('December 17, 1995 03:24:00')
+        //console.log(this.newDate)
+        car.returnDate = new Date(car.returnDate)
+      });
       this.dataLoadedForCar = true
     })
   }
   getCarsByColor(colorId:number) {
     this.carService.getCarsByColor(colorId).subscribe(response => {
       this.cars = response.data;
+      this.cars.forEach(car => {
+        
+        //this.newDate = new Date(car.returnDate); //let birthday = new Date('December 17, 1995 03:24:00')
+        //console.log(this.newDate)
+        car.returnDate = new Date(car.returnDate)
+      });
       this.dataLoadedForCar = true
     })
   }
@@ -96,6 +104,7 @@ export class CarComponent implements OnInit {
     } else {
       return '/images/default.png';
     }
+    
   }
 
   getCarsByBrandIdAndColorId(brandId: number, colorId: number) {
