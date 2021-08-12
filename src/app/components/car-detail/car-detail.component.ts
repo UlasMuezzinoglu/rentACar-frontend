@@ -124,7 +124,7 @@ export class CarDetailComponent implements OnInit {
     this.cartService.addToCart(car);
     //console.log("sepete eklendi",car.description)
     
-    this.toastrService.success("Sepete Eklendi",car.brandName)
+    this.toastrService.success("Sepete Eklendii",car.brandName)
   
   }
 

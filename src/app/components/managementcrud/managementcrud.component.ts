@@ -59,7 +59,7 @@ export class ManagementcrudComponent implements OnInit {
      
 
   ngOnInit(): void {
-    this.titleService.setTitle("Yönetim");
+    this.titleService.setTitle("Yönetici Paneli");
     this.createBrandAddForm();
     this.createColorAddForm();
     this.createCarAddForm();
