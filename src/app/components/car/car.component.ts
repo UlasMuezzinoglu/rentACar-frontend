@@ -30,8 +30,8 @@ export class CarComponent implements OnInit {
     private titleService:Title) { }
 
   ngOnInit(): void {
-    
-    console.log("Made by Coffee And <3")
+    window.console.log.apply(console, ["\n %c Made with love \u2665 And Coffee - by Ulaş Müezzinoğlu \n",
+    "color: #000; background: #fd0; padding:5px 0;"])
     this.activatedRoute.params.subscribe(params => {
 
       if (params['brandId'] && params['colorId']) {
@@ -112,6 +112,7 @@ export class CarComponent implements OnInit {
       .getCarsByBrandIdAndColorId(brandId, colorId)
       .subscribe((response) => {
         this.cars = response.data;
+        this.dataLoadedForCar = true
       });
   }
 

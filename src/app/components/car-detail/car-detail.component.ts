@@ -38,6 +38,7 @@ export class CarDetailComponent implements OnInit {
     private formbuilder:FormBuilder) { }
 
   ngOnInit(): void {
+    
     this.activatedRoute.params.subscribe(params => {
       if (params["carId"]) {
         this.getCarDetail(params["carId"]);
@@ -45,6 +46,14 @@ export class CarDetailComponent implements OnInit {
         this.testMetot(params["carId"]);
         this.titleService.setTitle("Araç Detayları");
         this.createDatePickerForm();
+
+        
+
+       // console.log(this.nowDate.getMonth().toString())
+         
+        
+      
+
         
       }
     })
@@ -123,14 +132,11 @@ export class CarDetailComponent implements OnInit {
   createDatePickerForm(){
     
     this.datePickerForm = this.formbuilder.group({
-      returnDate: [this.nowDate.getFullYear,Validators.required] //yyyy mm dd
+      returnDate: ["2050-12-12",Validators.required] //yyyy mm dd
     })
   }
 
-  testPrint(){
-    
-    
-  }
+  
 
 
 }

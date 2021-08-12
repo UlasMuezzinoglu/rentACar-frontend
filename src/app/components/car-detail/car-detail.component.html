@@ -97,7 +97,7 @@
         <form [formGroup]="datePickerForm" >
           <div class="form-group">
               
-              <input type="date" [min]="nowDate |date:'yyyy-MM-dd'"  placeholder="Return Date"
+              <input required type="date" [min]="nowDate |date:'yyyy-MM-dd'"  placeholder="Return Date"
                                            formControlName="returnDate">
           </div>
       </form>

@@ -1,3 +1,7 @@
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { RegisterComponent } from './components/register/register.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { ManagementcrudComponent } from './components/managementcrud/managementcrud.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
@@ -7,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { LoginGuard } from './components/guards/login.guard';
+import { RegisterGuard } from './components/guards/register.guard';
 
 const routes: Routes = [
   {path:"",pathMatch:"full", component:CarComponent},
@@ -18,7 +23,15 @@ const routes: Routes = [
   {path:"cars/filter/:brandId/:colorId",component:CarComponent},
   {path:"cars/add", component:CarAddComponent, canActivate:[LoginGuard]},
   {path:"management", component:ManagementcrudComponent, canActivate:[LoginGuard]},
-  {path:"login", component:LoginComponent},
+  {path:"login", component:LoginComponent,canActivate:[RegisterGuard]},
+  {path:"about-us", component:AboutComponent},
+  {path:"blog", component:BlogComponent},
+  {path:"register", component:RegisterComponent,canActivate:[RegisterGuard]},
+  {path: '404', component: NotfoundComponent},
+  {path: '**', redirectTo: '/404'},
+
+  
+
 
 
 

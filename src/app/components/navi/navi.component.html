@@ -38,14 +38,14 @@
     <div class="container ">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start navbar">
         <a routerLink="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <img class="bi me-2" src="https://i.hizliresim.com/g15yrpr.png" alt="" width="80" height="40">
+          <img class="bi me-2" src="https://i.ibb.co/hg4y31s/logo.png" alt="" width="80" height="40">
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a routerLink="/cars" class="nav-link px-2 text-white">Anasayfa</a></li>
           <li><a class="nav-link px-2 text-white" routerLink="/rentals">Kiralamalar</a></li>
-          <li><a  class="nav-link px-2 text-white">Hakkımızda</a></li>
-          <li><a  class="nav-link px-2 text-white">Blog</a></li>
+          <li><a routerLink="/about-us" class="nav-link px-2 text-white">Hakkımızda</a></li>
+          <li><a routerLink="/blog" class="nav-link px-2 text-white">Blog</a></li>
           <app-cart-summary></app-cart-summary>
         </ul>
         
@@ -61,7 +61,7 @@
 
         <div *ngIf="!isSigned()" class="text-end">
           <button type="button" routerLink="/login" class="btn btn-outline-light me-2">Giriş Yap</button>
-          <button type="button" class="btn btn-warning">Üye Ol</button>
+          <button type="button" routerLink="/register" class="btn btn-warning">Üye Ol</button>
         </div>
         
       </div>

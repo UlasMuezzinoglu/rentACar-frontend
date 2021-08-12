@@ -31,6 +31,10 @@ import { GetidwithcharPipe } from './pipes/getidwithchar.pipe';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { FooterComponent } from './components/footer/footer.component';
+import { AboutComponent } from './components/about/about.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { FooterComponent } from './components/footer/footer.component';
     GetidwithsharpPipe,
     GetidwithcharPipe,
     LoginComponent,
-    FooterComponent    
+    FooterComponent,
+    AboutComponent,
+    BlogComponent,
+    RegisterComponent,
+    NotfoundComponent    
     
   ],
   imports: [

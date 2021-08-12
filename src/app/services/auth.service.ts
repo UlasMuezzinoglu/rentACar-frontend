@@ -1,3 +1,4 @@
+import { RegisterModel } from './../models/registerModel';
 import { TokenModel } from './../models/tokenModel';
 import { ResponseModel } from './../models/responseModel';
 import { HttpClient } from '@angular/common/http';
@@ -12,18 +13,21 @@ export class AuthService {
 
   apiUrl = "https://localhost:44341/api/Auth/"
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  login(loginModel:LoginModel) {
-  return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl+"login",loginModel)
+  login(loginModel: LoginModel) {
+    return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl + "login", loginModel)
+  }
+  register(registerModel: RegisterModel) {
+    return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl + "register", registerModel)
   }
 
 
-  isAuthenticated(){
+  isAuthenticated() {
     if (localStorage.getItem("token")) {
       return true;
     }
-    else{
+    else {
       return false;
     }
   }
