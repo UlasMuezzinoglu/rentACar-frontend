@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
 import { CarDetailService } from 'src/app/services/car-detail.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-car-detail',
@@ -20,13 +21,21 @@ export class CarDetailComponent implements OnInit {
   currentImage:CarImage;
   data:any;
 
-  nowDate:Date = new Date()
 
+  //
+  datePickerForm:FormGroup;
+
+  
+
+
+  nowDate:Date = new Date()
+  newDate = new Date();
   constructor(private carDetailService:CarDetailService,
     private activatedRoute:ActivatedRoute,
     private titleService:Title,
     private cartService:CartService,
-    private toastrService:ToastrService) { }
+    private toastrService:ToastrService,
+    private formbuilder:FormBuilder) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -35,6 +44,7 @@ export class CarDetailComponent implements OnInit {
         this.getCarImage(params["carId"]);
         this.testMetot(params["carId"]);
         this.titleService.setTitle("Araç Detayları");
+        this.createDatePickerForm();
         
       }
     })
@@ -94,14 +104,33 @@ export class CarDetailComponent implements OnInit {
   
   setCurrentImageClass(image:CarImage){
     this.currentImage = image;
+    
   }
 
   addToCart(car:Car){
     
+    
+    car.returnDate = this.datePickerForm.value.returnDate;
+
     this.cartService.addToCart(car);
     //console.log("sepete eklendi",car.description)
     
     this.toastrService.success("Sepete Eklendi",car.brandName)
   
   }
+
+
+  createDatePickerForm(){
+    
+    this.datePickerForm = this.formbuilder.group({
+      returnDate: [this.nowDate.getFullYear,Validators.required] //yyyy mm dd
+    })
+  }
+
+  testPrint(){
+    
+    
+  }
+
+
 }

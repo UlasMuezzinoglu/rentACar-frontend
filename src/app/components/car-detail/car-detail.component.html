@@ -92,8 +92,20 @@
       <h4>Sadece {{car.dailyPrice | currency: "TRY":"₺"}}</h4>
       <p>Parammmm olsaaa daaaa ben alsaaaaaaammmmmmmmmmmmm</p>
       
+      <div *ngIf="car.returnDate < nowDate">
+
+        <form [formGroup]="datePickerForm" >
+          <div class="form-group">
+              
+              <input type="date" [min]="nowDate |date:'yyyy-MM-dd'"  placeholder="Return Date"
+                                           formControlName="returnDate">
+          </div>
+      </form>
+
+        <a (click)="addToCart(car)" class="btn btn-warning"> Arabayı Kirala </a>
+        
+      </div>
       
-      <a *ngIf="car.returnDate < nowDate" (click)="addToCart(car)" class="btn btn-warning"> Arabayı Kirala </a>
     </div>
   </div>
 </div>
