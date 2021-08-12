@@ -35,6 +35,7 @@ import { AboutComponent } from './components/about/about.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { TestforgithubComponent } from './components/testforgithub/testforgithub.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     BlogComponent,
     RegisterComponent,
     NotfoundComponent,
+    TestforgithubComponent,
     
   ],
   imports: [
