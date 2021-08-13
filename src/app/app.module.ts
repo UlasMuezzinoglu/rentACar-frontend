@@ -36,6 +36,8 @@ import { BlogComponent } from './components/blog/blog.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { TestforgithubComponent } from './components/testforgithub/testforgithub.component';
+import { CalcPricePipe } from './pipes/calc-price.pipe';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { TestforgithubComponent } from './components/testforgithub/testforgithub
     RegisterComponent,
     NotfoundComponent,
     TestforgithubComponent,
+    CalcPricePipe,
+    CartComponent,
     
   ],
   imports: [

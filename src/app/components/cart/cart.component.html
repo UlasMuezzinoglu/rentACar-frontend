@@ -1,0 +1,90 @@
+<div class="container mt-5 p-3 rounded cart">
+    <div class="row no-gutters">
+        <div class="col-md-8">
+            <div class="product-details mr-2">
+                <div class="d-flex flex-row align-items-center"><i  class="fa fa-long-arrow-left"></i><span routerLink="/cars" class="ml-2">Alışverişe Devam Et</span></div>
+                <hr>
+                <h6 class="mb-0">Sepetiniz</h6>
+                <div class="d-flex justify-content-between"><span>Sepetenizde {{cartItems.length}} Ürün Var</span>
+                </div>
+                <div *ngFor="let item of cartItems" class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    <div class="d-flex flex-row"><img class="rounded" src="https://i.imgur.com/QRwjbm5.jpg" width="40">
+                        <div class="ml-2">
+                            <span class="font-weight-bold d-block">{{item.car.brandName}}</span>
+                            <span class="spec">Dönüş Tarihi : {{item.car.returnDate}}</span>
+                            <button (click)="removeFromCart(item.car)" title="Sepetten Sil">X</button>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center"><span class="d-block">2</span><span class="d-block ml-5 font-weight-bold">$900</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="payment-info">
+                <div class="d-flex justify-content-between align-items-center"><span>Card details</span><img class="rounded" src="https://i.imgur.com/WU501C8.jpg" width="30"></div><span class="type d-block mt-3 mb-1">Card type</span><label class="radio"> <input type="radio" name="card" value="payment" checked> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>
+                <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" /></span> </label>
+                <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/ultraviolet/48/000000/amex.png" /></span> </label>
+                <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" /></span> </label>
+                <div><label class="credit-card-label">Name on card</label><input type="text" class="form-control credit-inputs" placeholder="Name"></div>
+                <div><label class="credit-card-label">Card number</label><input type="text" inputmode="numeric" class="form-control credit-inputs" placeholder="0000 0000 0000 0000"></div>
+                <div class="row">
+                    <div class="col-md-6"><label class="credit-card-label">Date</label><input type="text" class="form-control credit-inputs" placeholder="12/24"></div>
+                    <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="text" class="form-control credit-inputs" placeholder="342"></div>
+                </div>
+                <hr class="line">
+                <div class="d-flex justify-content-between information"><span>Subtotal</span><span>$3000.00</span></div>
+                <div class="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div>
+                <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span><span>$3020.00</span></div><button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button"><span>$3020.00</span><span>Checkout<i class="fa fa-long-arrow-right ml-1"></i></span></button>
+            </div>
+            
+            
+
+
+  <!-- <div class="grid align__item">
+
+    <h2>Mastercard Visa American Express</h2>
+
+    <div class="card">
+
+      <header class="card__header">
+        <h3 class="card__title">Ödeme Bilgileri</h3>
+        <svg xmlns="http://www.w3.org/2000/svg" class="card__logo" width="140" height="43" viewBox="0 0 175.7 53.9"><style>.visa{fill:#fff;}</style><path class="visa" d="M61.9 53.1l8.9-52.2h14.2l-8.9 52.2zm65.8-50.9c-2.8-1.1-7.2-2.2-12.7-2.2-14.1 0-24 7.1-24 17.2-.1 7.5 7.1 11.7 12.5 14.2 5.5 2.6 7.4 4.2 7.4 6.5 0 3.5-4.4 5.1-8.5 5.1-5.7 0-8.7-.8-13.4-2.7l-2-.9-2 11.7c3.3 1.5 9.5 2.7 15.9 2.8 15 0 24.7-7 24.8-17.8.1-5.9-3.7-10.5-11.9-14.2-5-2.4-8-4-8-6.5 0-2.2 2.6-4.5 8.1-4.5 4.7-.1 8 .9 10.6 2l1.3.6 1.9-11.3M164.2 1h-11c-3.4 0-6 .9-7.5 4.3l-21.1 47.8h14.9s2.4-6.4 3-7.8h18.2c.4 1.8 1.7 7.8 1.7 7.8h13.2l-11.4-52.1m-17.5 33.6c1.2-3 5.7-14.6 5.7-14.6-.1.1 1.2-3 1.9-5l1 4.5s2.7 12.5 3.3 15.1h-11.9zm-96.7-33.7l-14 35.6-1.5-7.2c-2.5-8.3-10.6-17.4-19.6-21.9l12.7 45.7h15.1l22.4-52.2h-15.1"/><path fill="#F7A600" d="M23.1.9h-22.9l-.2 1.1c17.9 4.3 29.7 14.8 34.6 27.3l-5-24c-.9-3.3-3.4-4.3-6.5-4.4"/></svg>
+
+      </header>
+
+      <form action="" method="post" class="form">
+
+        <div class="card__number form__field">
+          <label for="card__number" class="card__number__label">Kart Numarası</label>
+          <input type="text" maxlength="16" id="card__number" class="card__number__input" placeholder="4000 1234 5678 9010">
+        </div>
+
+
+        <div class="card__expiration form__field">
+          <label for="card__expiration__month">Son Kullanım Tarihi Ay</label>
+          <input max="12" min="01" type="text" maxlength="2" style="background-color: white; color: black;" value="01" id="card__expiration__month">
+            
+          <hr>
+          <label for="card__expiration__month">Son Kullanım Tarihi Yıl</label>
+          <input max="99" min="21" type="text" maxlength="2" style="background-color: white; color: black;" value="23" id="card__expiration__year">
+            
+          
+        </div>
+
+        <div class="card__ccv form__field">
+          <label for="">CCV</label>
+          <input type="text" maxlength="3" class="card__ccv__input" placeholder="583">
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+   -->
+
+
+    </div>
+</div>

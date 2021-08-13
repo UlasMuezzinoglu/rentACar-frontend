@@ -52,7 +52,7 @@
       <div class="row">
         <div class="col-sm-6">
           
-          <a *ngIf="car.returnDate < nowDate" (click)="addToCart(car)" class="btn btn-primary"> Arabayı Kirala </a>
+          <a *ngIf="car.returnDate < nowDate" routerLink = "/cars/carDetail/{{car.id}}" class="btn btn-primary"> Arabayı Kirala </a>
           <a *ngIf="car.returnDate > nowDate" style="visibility: hidden">.</a>
         </div>
         <div class="col-sm-6">

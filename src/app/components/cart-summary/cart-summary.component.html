@@ -5,11 +5,11 @@
     </a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
       <li *ngFor="let cartItem of cartItems">
-        <a class="dropdown-item">{{cartItem.car.brandName}} {{cartItem.car.dailyPrice}} {{cartItem.car.returnDate}} <span (click)="removeFromCart(cartItem.car)" class="badge bg-danger">X</span> </a>
+        <a class="dropdown-item">{{cartItem.car.brandName}}<span (click)="removeFromCart(cartItem.car)" class="badge bg-danger">X</span> </a>
       </li>
       
       
       <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" >Sepete Git</a></li>
+      <li><a routerLink="/cart" class="dropdown-item" >Sepete Git</a></li>
     </ul>
   </li>

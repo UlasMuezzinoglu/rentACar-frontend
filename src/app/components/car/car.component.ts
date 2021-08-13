@@ -16,6 +16,10 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CarComponent implements OnInit {
 
+  /* window.console.log.apply(console, ["\n %c Made with love \u2665 And Coffee - By Ulaş Müezzinoğlu \n",
+    "color: #000; background: #fd0; padding:5px 0;"]) */
+
+
   cars: Car[] = []
   dataLoadedForCar = false;
   filterText: string = '';
@@ -30,8 +34,7 @@ export class CarComponent implements OnInit {
     private titleService:Title) { }
 
   ngOnInit(): void {
-    window.console.log.apply(console, ["\n %c Made with love \u2665 And Coffee - By Ulaş Müezzinoğlu \n",
-    "color: #000; background: #fd0; padding:5px 0;"])
+    
     this.activatedRoute.params.subscribe(params => {
 
       if (params['brandId'] && params['colorId']) {

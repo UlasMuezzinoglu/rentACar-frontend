@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Car } from 'src/app/models/car';
-import { CartItem } from 'src/app/models/cartItem';
 import { CartService } from 'src/app/services/cart.service';
+import { Component, OnInit } from '@angular/core';
+import { CartItem } from 'src/app/models/cartItem';
+import { Car } from 'src/app/models/car';
 
 @Component({
-  selector: 'app-cart-summary',
-  templateUrl: './cart-summary.component.html',
-  styleUrls: ['./cart-summary.component.css']
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.css']
 })
-export class CartSummaryComponent implements OnInit {
+export class CartComponent implements OnInit {
 
   cartItems: CartItem[] = [];
-  //totalPrice: number = 0
-  constructor(private cartService:CartService,
-    private toastrService:ToastrService) { }
+
+  constructor(private cartService:CartService, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.getCart();
@@ -28,6 +27,8 @@ export class CartSummaryComponent implements OnInit {
     //console.log(car.description+" "+"Sepetten silindi")
     this.toastrService.error(car.brandName +" "+ "Başarı ile Sepetten Silindi","Silindi ! ");
   }
+
   
   
+
 }
