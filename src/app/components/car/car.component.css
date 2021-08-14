@@ -13,3 +13,10 @@
 #cardHeader{
     height: 13rem;
 }
+@media (max-width:500px)  { 
+    .card{
+        width: 18rem !important;
+        margin-left: 2.2em;
+        
+    }
+ }

@@ -11,7 +11,7 @@
 </svg>
 
 <div class="row" *ngFor="let car of cars"> 
-  <div *ngIf="car.returnDate > nowDate"  class="alert alert-warning d-flex align-items-center" role="alert">
+  <div id="cstAlert" *ngIf="car.returnDate > nowDate"  class="alert alert-warning d-flex align-items-center" role="alert">
     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
     <div>
       Bu Araba Kiralanamaz :( Çünkü Şu an Kirada... belki şu an birileri bu araba ile drift atıyor... geziyor tozuyor anlıyor musun geziyorrrrrrr ben tam 7 aydır evdeyim... keşke geliştirici yerine emlakçı olsaydım... :(

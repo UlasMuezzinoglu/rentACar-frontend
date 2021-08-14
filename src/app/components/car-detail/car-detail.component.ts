@@ -25,7 +25,7 @@ export class CarDetailComponent implements OnInit {
   //
   datePickerForm:FormGroup;
 
-  
+  brandNameForTitle :string
 
 
   nowDate:Date = new Date()
@@ -46,13 +46,13 @@ export class CarDetailComponent implements OnInit {
         this.getCarDetail(params["carId"]);
         this.getCarImage(params["carId"]);
         this.testMetot(params["carId"]);
-        this.titleService.setTitle("Araç Detayları");
         this.createDatePickerForm();
         this.nowDate.setDate(this.nowDate.getDate()+1)
         
 
        // console.log(this.nowDate.getMonth().toString())
-         
+       
+
         
       
 
@@ -81,7 +81,9 @@ export class CarDetailComponent implements OnInit {
         //this.newDate = new Date(car.returnDate); //let birthday = new Date('December 17, 1995 03:24:00')
         //console.log(this.newDate)
         car.returnDate = new Date(car.returnDate)
+        this.brandNameForTitle = car.brandName
       });
+      this.titleService.setTitle("Araç Detayları"+" | "+this.brandNameForTitle);
     })
   }
 

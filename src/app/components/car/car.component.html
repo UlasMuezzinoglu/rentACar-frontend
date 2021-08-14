@@ -40,7 +40,7 @@
   <div *ngIf="!dataLoadedForCar" class="spinner-border text-warning" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-   <div  class="card" style="width: 18rem !important;" *ngFor="let car of cars | carfilter:filterText ">
+   <div  class="card" style="width: 18rem ;" *ngFor="let car of cars | carfilter:filterText ">
     <img id="cardHeader"src="{{ carImageBasePath }}{{ getCarImage(car) }}" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title">{{car.brandName}}</h5>
