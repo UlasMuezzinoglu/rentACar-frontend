@@ -1,3 +1,4 @@
+import { TermsComponent } from './components/terms/terms.component';
 import { CartComponent } from './components/cart/cart.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path:"login", component:LoginComponent,canActivate:[RegisterGuard]},
   {path:"about-us", component:AboutComponent},
   {path:"blog", component:BlogComponent},
+  {path:"terms", component:TermsComponent},
   {path:"register", component:RegisterComponent,canActivate:[RegisterGuard]},
   {path:"cart", component:CartComponent,canActivate:[LoginGuard]},
   {path: '404', component: NotfoundComponent},

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,9 +13,18 @@ export class FooterComponent implements OnInit {
 
   nowDate: Date = new Date()
 
-  constructor() { }
+  constructor(private authService:AuthService,private router:Router,private toastrService : ToastrService) { }
 
   ngOnInit(): void {
+  }
+
+  isSigned() : boolean{
+    return this.authService.isAuthenticated();
+  }
+  logOut(){
+    this.router.navigate(["cars"])
+    this.toastrService.warning("Çıkış Yapıldı...")
+    localStorage.removeItem("token")
   }
 
   topFunction() {

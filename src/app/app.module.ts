@@ -38,6 +38,7 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { TestforgithubComponent } from './components/testforgithub/testforgithub.component';
 import { CalcPricePipe } from './pipes/calc-price.pipe';
 import { CartComponent } from './components/cart/cart.component';
+import { TermsComponent } from './components/terms/terms.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { CartComponent } from './components/cart/cart.component';
     TestforgithubComponent,
     CalcPricePipe,
     CartComponent,
+    TermsComponent,
     
   ],
   imports: [

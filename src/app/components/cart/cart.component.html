@@ -1,7 +1,7 @@
 <div class="container mt-5 p-3 rounded cart">
     <div class="row no-gutters">
         <div class="col-md-8">
-            <div class="product-details mr-2">
+            <!-- <div class="product-details mr-2">
                 <div class="d-flex flex-row align-items-center"><i  class="fa fa-long-arrow-left"></i><span routerLink="/cars" class="ml-2">Alışverişe Devam Et</span></div>
                 <hr>
                 <h6 class="mb-0">Sepetiniz</h6>
@@ -18,7 +18,46 @@
                     <div class="d-flex flex-row align-items-center"><span class="d-block">2</span><span class="d-block ml-5 font-weight-bold">$900</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
                 </div>
                 
+            </div> -->
+            
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Araç Markası</th>
+                            <th scope="col">Arabanın Dönüş Tarihi</th>
+                            <th scope="col" class="text-center">Kaç Günlük</th>
+                            <th scope="col" class="text-right">Toplam Fiyat</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cartItems">
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td>{{item.car.brandName}}</td>
+                            <td>{{item.car.returnDate}}</td>
+                            <td>{{kacGunlukHesapla(item)}}</td>
+                            <td class="text-right">{{(item.car.dailyPrice * kacGunlukHesapla(item) | currency: "TRY":"₺")}}</td>
+                            <td class="text-right"><button (click)="removeFromCart(item.car)" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
+</div>
+
+
         </div>
         <div class="col-md-4">
             <div class="payment-info">
@@ -35,7 +74,7 @@
                 <hr class="line">
                 <div class="d-flex justify-content-between information"><span>Subtotal</span><span>$3000.00</span></div>
                 <div class="d-flex justify-content-between information"><span>Shipping</span><span>$20.00</span></div>
-                <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span><span>$3020.00</span></div><button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button"><span>$3020.00</span><span>Checkout<i class="fa fa-long-arrow-right ml-1"></i></span></button>
+                <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span><span></span></div><button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button"><span>{{calculateTotalPrice() | currency: "TRY":"₺" }}</span><span> Ödeme Yap<i class="fa fa-long-arrow-right ml-1"></i></span></button>
             </div>
             
             

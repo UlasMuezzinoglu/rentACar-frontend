@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <footer class="py-5">
       <div class="row">
         <div class="col-2">
@@ -49,18 +49,80 @@
   
       <div class="d-flex justify-content-between py-4 my-4 border-top">
         <p>&copy; {{nowDate.getFullYear()}} KolaycaKirala.com,  Hiçbir Hakkı Saklı Değildir, Portföy Çalışmasıdır.</p>
-        
-        <ul class="list-unstyled d-flex">
-          <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-          <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-          <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-        </ul>
       </div>
       <p>Made With Coffee And Tea</p>
       <button  type="button" (click)="topFunction()" class="btn btn-primary">Yukarı</button> <br>
       
 
     </footer>
-  </div>
+  </div> -->
   
   
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+
+   <footer>
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 footer-about wow fadeInUp">
+            <h3>Hakkımızda</h3>
+            <p>
+              Evinde, işinde, günün her anında tek tıklama ile Kolayca Araba Kiralayabilirsin !
+            </p>
+            
+                </div>
+          <div class="col-md-4 offset-md-1 footer-contact wow fadeInDown">
+            <h3>İletişim</h3>
+                <p><i class="fas fa-map-marker-alt"></i> İşletme adres Bilgisi </p>
+                <p><i class="fas fa-phone"></i> GSM: +90 (xxx xxx xx xx)</p>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:martulas5252@gmail.com" style="color: black; text-decoration: none;">Tıkla Mesaj At</a></p>
+                </div>
+                <div class="col-md-4 footer-links wow fadeInUp">
+                  <div class="row">
+                    <div class="col">
+                      <h3>Bağlantılar</h3>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><a routerLink="/cars" class="nav-link px-2 text-black">Anasayfa</a></p>
+                      <p><a class="nav-link px-2 text-black" routerLink="/rentals">Kiralamalar</a></p>
+                      <p><a routerLink="/about-us" class="nav-link px-2 text-black">Hakkımızda</a></p>
+                      <p><a routerLink="/blog" class="nav-link px-2 text-black">Blog</a></p>  
+          
+                    </div>
+                    <div class="col-md-6">
+                      <div *ngIf="!isSigned()">
+                        <p><a routerLink="/login" class="nav-link px-2 text-black">Giriş Yap</a></p>
+                      <p><a routerLink="/register" class="nav-link px-2 text-black" >Kayıt Ol</a></p>
+                      </div>
+                      <div *ngIf="isSigned()">
+                        <p><a (click)="logOut()" class="nav-link px-2 text-black">Çıkış Yap</a></p>
+
+                      </div>
+
+                      <p><a routerLink="/terms" class="nav-link px-2 text-black">Kullanım Politikası</a></p>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+             <div class="col footer-social">
+                  <a href="#"><i class="fab fa-facebook-f"></i></a> 
+        <a href="#"><i class="fab fa-twitter"></i></a> 
+        <a href="#"><i class="fab fa-google-plus-g"></i></a> 
+        <a href="#"><i class="fab fa-instagram"></i></a> 
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+           </div>
+           <div class="d-flex justify-content-between py-4 my-4 border-top">
+            <p>&copy; {{nowDate.getFullYear()}} KolaycaKirala.com,  Hiçbir Hakkı Saklı Değildir, Portföy Çalışmasıdır.</p>
+          </div>
+      </div>
+    </div>
+  </footer>

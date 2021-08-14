@@ -1,6 +1,7 @@
 import { RentalService } from './../../services/rental.service';
 import { Rental } from './../../models/rental';
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-rental',
@@ -13,10 +14,12 @@ export class RentalComponent implements OnInit {
   dataLoadedForCar = false
 
   filterText:string = '';
-  constructor(private rentalService: RentalService) { }
+  constructor(private rentalService: RentalService, private titleService:Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Kiralamalar")
     this.getRentalsByDetailDto();
+    
   }
 
   getRentalsByDetailDto() {

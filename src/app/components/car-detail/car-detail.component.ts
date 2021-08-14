@@ -30,6 +30,8 @@ export class CarDetailComponent implements OnInit {
 
   nowDate:Date = new Date()
   newDate = new Date();
+  
+
   constructor(private carDetailService:CarDetailService,
     private activatedRoute:ActivatedRoute,
     private titleService:Title,
@@ -46,7 +48,7 @@ export class CarDetailComponent implements OnInit {
         this.testMetot(params["carId"]);
         this.titleService.setTitle("Araç Detayları");
         this.createDatePickerForm();
-
+        this.nowDate.setDate(this.nowDate.getDate()+1)
         
 
        // console.log(this.nowDate.getMonth().toString())
@@ -132,7 +134,7 @@ export class CarDetailComponent implements OnInit {
   createDatePickerForm(){
     
     this.datePickerForm = this.formbuilder.group({
-      returnDate: ["2050-12-30",Validators.required] //yyyy mm dd
+      returnDate: ["2021-12-30",Validators.required] //yyyy mm dd
     })
   }
 
