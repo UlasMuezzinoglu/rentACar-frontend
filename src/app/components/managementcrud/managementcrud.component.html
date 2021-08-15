@@ -74,6 +74,92 @@
                                         <button class="btn btn-fill btn-primary" (click)="addCar()">Arabayı
                                             Ekle</button>
                                     </div>
+                                    <hr>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Markası</th>
+                                                <th scope="col">Rengi</th>
+                                                <th scope="col">İşlem</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let car of cars">
+                                
+                                                <th scope="row">{{car.brandId}}</th>
+                                                <td>{{car.colorId}}</td>
+                                               <td>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                    [attr.data-bs-target]="customIddForCar(car)" (click)="aracGetir(car)">
+                                                    Aracı Güncelle / Sil
+                                                </button>
+                                                <div class="modal fade " [attr.id]="customIdddForCar(car)" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel" >Aracı Güncelle</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                        
+                                                                <div class="col-sm-6">
+                                                                    <form [formGroup]="carDeleteForm" >
+                                                                        <div class="form-group">
+                                                                            
+                                                                            <label for="carIdd">Araç ID'si</label>
+                                                                            <input readonly   type="number" placeholder="İd"
+                                                                                                    id="carIdd"     formControlName="id">
+                                                                            <label for="brandIdd">Marka ID'si</label>
+                                                                            <input id="brandIdd"  type="number" placeholder="Marka Id" 
+                                                                                                        formControlName="brandId" >
+                                                                                                        <label for="colorIdd">Renk ID'si</label>
+                                                                                                        <input id="colorIdd"  type="number" placeholder="Renk Id" 
+                                                                                                        formControlName="colorId" >
+                                                                                                        <label for="modelYearr">Model Yılı</label>
+                                                                                                        <input id="modelYearr" type="number" placeholder="Model Yılı" 
+                                                                                                        formControlName="modelYear" >
+                                                                                                        <label for="dailyPricee">Günlük Fiyatı</label>
+                                                                                                        <input id="dailyPricee" type="number" placeholder="Günlük Fiyatı" 
+                                                                                                        formControlName="dailyPrice" >
+                                                                                                        <label for="descriptionn">Açıklaması</label>
+                                                                                                        <textarea id="descriptionn" type="text" placeholder="Açıklama" 
+                                                                                                        formControlName="description" rows="4" cols="50"></textarea>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                        
+                                                                
+                        
+                                                                <div class="col-sm-6">
+                                                                    <button type="button" 
+                                                                        style="display: block; width: 100%;"
+                                                                        (click)="updateCar()"
+                                                                        class="btn btn-warning">Güncelle</button>
+                                                                    <button type="button" 
+                                                                        style="display: block; width: 100%;"
+                                                                        (click)="deleteCar()"
+                                                                        class="btn btn-danger">Sil</button>
+                                                                        
+                                                                </div>
+                                                            </div>
+                        
+                        
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                               </td>
+                                
+                                            </tr>
+                                
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

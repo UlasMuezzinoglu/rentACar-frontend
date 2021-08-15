@@ -155,13 +155,19 @@ label.radio input:checked+span {
 .reviews_product .fa-star {
     color: gold;
 }
+#odmYap{
+    margin-left: 5px;
+}
 .pagination {
     margin-top: 20px;
 }
 footer {
     background: #343a40;
     padding: 40px;
+    
 }
 footer a {
     color: #f8f9fa!important
+    
 }
+

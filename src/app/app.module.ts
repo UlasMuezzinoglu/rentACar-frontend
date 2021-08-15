@@ -40,6 +40,7 @@ import { CalcPricePipe } from './pipes/calc-price.pipe';
 import { CartComponent } from './components/cart/cart.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { StoriesComponent } from './components/stories/stories.component';
+import { VatAddedPipe } from './pipes/vat-added.pipe';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { StoriesComponent } from './components/stories/stories.component';
     CartComponent,
     TermsComponent,
     StoriesComponent,
+    VatAddedPipe,
     
   ],
   imports: [

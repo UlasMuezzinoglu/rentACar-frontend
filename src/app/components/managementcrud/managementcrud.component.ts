@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder ,FormControl ,Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Color } from 'src/app/models/color';
+import { Car } from 'src/app/models/car';
 
 @Component({
   selector: 'app-managementcrud',
@@ -26,6 +27,7 @@ export class ManagementcrudComponent implements OnInit {
   //deleteForms (also update)
   brandDeleteForm:FormGroup;
   colorDeleteForm:FormGroup;
+  carDeleteForm:FormGroup;
   //end of deleteForms (also update)
   
   
@@ -38,12 +40,16 @@ export class ManagementcrudComponent implements OnInit {
   //
   brands:Brand[] = []
   colors:Color[] = []
+  cars:Car[] = []
   //
 
   //
   currentbrand : Brand
   currentcolor : Color
-  //  
+  currentcar : Car
+
+  //
+  
 
   
 
@@ -67,13 +73,27 @@ export class ManagementcrudComponent implements OnInit {
     this.createBrandUpdateForm();
     this.createColorDeleteForm();
     this.createColorUpdateForm();
+    this.createCarDeleteForm();
+    this.createCarUpdateForm();
 
     
     this.getBrands();
     this.getColors();
+    this.getCars();
     
     
   }
+
+
+
+
+
+
+
+
+
+
+
 
 
   // form create
@@ -129,7 +149,30 @@ export class ManagementcrudComponent implements OnInit {
     })
     
   }
+  //
+  createCarDeleteForm(){
+    this.carDeleteForm = this.formbuilder.group({
+      id: ["",Validators.required],
+      brandId: ["",Validators.required],
+      colorId: ["",Validators.required],
+      modelYear: ["",Validators.required],
+      dailyPrice: ["",Validators.required],
+      description: ["",Validators.required]
 
+    })
+    
+  }
+  createCarUpdateForm(){
+    this.carDeleteForm = this.formbuilder.group({
+      id: ["",Validators.required],
+      brandId: ["",Validators.required],
+      colorId: ["",Validators.required],
+      modelYear: ["",Validators.required],
+      dailyPrice: ["",Validators.required],
+      description: ["",Validators.required]
+    })
+    
+  }
   
   // form create end
 
@@ -191,6 +234,28 @@ export class ManagementcrudComponent implements OnInit {
     }
   }
   //
+  // car
+  deleteCar(){
+    if (this.carDeleteForm.valid) {
+      let carModel = Object.assign({},this.carDeleteForm.value)
+      this.carService.delete(carModel).subscribe(response => {
+        this.toastrService.success(response.message,carModel.id)
+      })
+    }else{
+      this.toastrService.error("Formunuz Eksik","Hata !")
+    }
+  }
+
+  updateCar(){
+    if (this.carDeleteForm.valid) {
+      let carModel = Object.assign({},this.carDeleteForm.value)
+      this.carService.update(carModel).subscribe(response => {
+        this.toastrService.success(response.message,carModel.id)
+      })
+    }else{
+      this.toastrService.error("Formunuz Eksik","Hata !")
+    }
+  }
   //
   addCar(){
     if (this.carAddForm.valid) {
@@ -256,6 +321,11 @@ export class ManagementcrudComponent implements OnInit {
       this.colors = response.data;
     })
   }
+  getCars(){
+    this.carService.getCars().subscribe(response => {
+      this.cars = response.data;
+    })
+  }
   // get methots end
 
   
@@ -274,6 +344,13 @@ export class ManagementcrudComponent implements OnInit {
   customIdddForColor(color:Color) {
     return "a"+color.id.toString()
   }
+  //for car
+  customIddForCar(car:Car) {
+    return "#a"+car.id.toString()
+  }
+  customIdddForCar(car:Car) {
+    return "a"+car.id.toString()
+  }
 
 
   // getBrandItemId(brand:Brand){
@@ -288,6 +365,25 @@ export class ManagementcrudComponent implements OnInit {
     this.currentcolor = color
     this.colorDeleteForm.controls['name'].setValue(this.currentcolor.name)
     this.colorDeleteForm.controls['id'].setValue(this.currentcolor.id)
+  }
+  //aracıGetir(car:Car){
+    //this.currentcar = car
+    //this.carDeleteForm.controls['id'].setValue(this.currentcar.id)
+    //this.carDeleteForm.controls['brandId'].setValue(this.currentcar.brandId)
+    // this.carDeleteForm.controls['colorId'].setValue(this.currentcar.colorId)
+    // this.carDeleteForm.controls['modelYear'].setValue(this.currentcar.modelYear)
+    // this.carDeleteForm.controls['dailyPrice'].setValue(this.currentcar.dailyPrice)
+    // this.carDeleteForm.controls['description'].setValue(this.currentcar.description)
+  //}
+
+  aracGetir(car:Car){
+    this.currentcar = car
+    this.carDeleteForm.controls['id'].setValue(this.currentcar.id)
+    this.carDeleteForm.controls['brandId'].setValue(this.currentcar.brandId)
+    this.carDeleteForm.controls['colorId'].setValue(this.currentcar.colorId)
+    this.carDeleteForm.controls['modelYear'].setValue(this.currentcar.modelYear)
+    this.carDeleteForm.controls['dailyPrice'].setValue(this.currentcar.dailyPrice)
+    this.carDeleteForm.controls['description'].setValue(this.currentcar.description)
   }
   // Custom Methods end
  }
