@@ -13,6 +13,9 @@ export class AuthService {
 
   apiUrl = "https://localhost:44341/api/Auth/"
 
+  userId :number
+
+
   constructor(private httpClient: HttpClient) { }
 
   login(loginModel: LoginModel) {
@@ -31,4 +34,6 @@ export class AuthService {
       return false;
     }
   }
+
+
 }

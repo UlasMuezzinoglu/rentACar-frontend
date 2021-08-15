@@ -39,6 +39,7 @@ import { TestforgithubComponent } from './components/testforgithub/testforgithub
 import { CalcPricePipe } from './pipes/calc-price.pipe';
 import { CartComponent } from './components/cart/cart.component';
 import { TermsComponent } from './components/terms/terms.component';
+import { StoriesComponent } from './components/stories/stories.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { TermsComponent } from './components/terms/terms.component';
     CalcPricePipe,
     CartComponent,
     TermsComponent,
+    StoriesComponent,
     
   ],
   imports: [

@@ -30,12 +30,16 @@ export class NaviComponent implements OnInit {
   isNotSigned() : boolean{
     return this.authService.isAuthenticated();
   }
+  getFullName(){
+    return localStorage.getItem("firstName")+" "+localStorage.getItem("lastName")
+  }
 
 
   logOut(){
     this.router.navigate(["cars"])
     this.toastrService.warning("Çıkış Yapıldı...")
-    localStorage.removeItem("token")
+    //localStorage.removeItem("token")
+    localStorage.clear()
   }
 
 

@@ -1,3 +1,4 @@
+import { StoriesComponent } from './components/stories/stories.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { CartComponent } from './components/cart/cart.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
@@ -12,8 +13,8 @@ import { CarComponent } from './components/car/car.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
-import { LoginGuard } from './components/guards/login.guard';
-import { RegisterGuard } from './components/guards/register.guard';
+import { LoginGuard } from './guards/login.guard';
+import { RegisterGuard } from './guards/register.guard';
 
 const routes: Routes = [
   {path:"",pathMatch:"full", component:CarComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:"blog", component:BlogComponent},
   {path:"terms", component:TermsComponent},
   {path:"register", component:RegisterComponent,canActivate:[RegisterGuard]},
+  {path:"stories", component:StoriesComponent},
   {path:"cart", component:CartComponent,canActivate:[LoginGuard]},
   {path: '404', component: NotfoundComponent},
   {path: '**', redirectTo: '/404'},

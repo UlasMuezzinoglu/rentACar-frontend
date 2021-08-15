@@ -54,6 +54,17 @@
         </form> -->
 
         <div *ngIf="isSigned()" class="text-end">
+
+          <div class="dropdown" style="display: inline-block; margin-right: 1em;">
+            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+              {{getFullName()}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><button class="dropdown-item" type="button">Profilim</button></li>
+              <li><button class="dropdown-item" type="button">Cart</button></li>
+              <li><button class="dropdown-item" type="button">Curt</button></li>
+            </ul>
+          </div>
           
           <button type="button" class="btn btn-warning" (click)="logOut()">Çıkış Yap</button>
         </div>

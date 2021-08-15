@@ -42,8 +42,12 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(loginModel).subscribe(response =>{
         this.toastrService.success("Anasayfaya Yönlendiriliyorsunuz","Giriş Başarılı !")
-        //console.log(response)
+        console.log(response)
         localStorage.setItem("token",response.data.token)
+        localStorage.setItem("firstName",response.data.firstName)
+        localStorage.setItem("lastName",response.data.lastName)
+        //localStorage.setItem('userId', response.data.userId.toString())
+        this.authService.userId = response.data.userId
         this.router.navigate(["cars"])
       },responseError =>{
         this.toastrService.error(responseError.error)
