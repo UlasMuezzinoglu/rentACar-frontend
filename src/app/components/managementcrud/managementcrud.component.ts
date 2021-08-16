@@ -248,6 +248,8 @@ export class ManagementcrudComponent implements OnInit {
 
   updateCar(){
     if (this.carDeleteForm.valid) {
+      this.carDeleteForm.controls['brandId'].setValue(parseInt(this.carDeleteForm.controls['brandId'].value))
+      this.carDeleteForm.controls['colorId'].setValue(parseInt(this.carDeleteForm.controls['colorId'].value))
       let carModel = Object.assign({},this.carDeleteForm.value)
       this.carService.update(carModel).subscribe(response => {
         this.toastrService.success(response.message,carModel.id)
@@ -386,4 +388,12 @@ export class ManagementcrudComponent implements OnInit {
     this.carDeleteForm.controls['description'].setValue(this.currentcar.description)
   }
   // Custom Methods end
+
+
+  ekranaYazTest(){
+    this.carDeleteForm.controls['brandId'].setValue(parseInt(this.carDeleteForm.controls['brandId'].value))
+    this.carDeleteForm.controls['colorId'].setValue(parseInt(this.carDeleteForm.controls['colorId'].value))
+    console.log(this.carDeleteForm.value)
+    
+  }
  }

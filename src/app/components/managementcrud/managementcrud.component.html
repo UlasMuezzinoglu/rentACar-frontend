@@ -85,79 +85,123 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let car of cars">
-                                
+
                                                 <th scope="row">{{car.brandId}}</th>
                                                 <td>{{car.colorId}}</td>
-                                               <td>
-                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                    [attr.data-bs-target]="customIddForCar(car)" (click)="aracGetir(car)">
-                                                    Aracı Güncelle / Sil
-                                                </button>
-                                                <div class="modal fade " [attr.id]="customIdddForCar(car)" tabindex="-1"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel" >Aracı Güncelle</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                        
-                                                                <div class="col-sm-6">
-                                                                    <form [formGroup]="carDeleteForm" >
-                                                                        <div class="form-group">
-                                                                            
-                                                                            <label for="carIdd">Araç ID'si</label>
-                                                                            <input readonly   type="number" placeholder="İd"
-                                                                                                    id="carIdd"     formControlName="id">
-                                                                            <label for="brandIdd">Marka ID'si</label>
-                                                                            <input id="brandIdd"  type="number" placeholder="Marka Id" 
-                                                                                                        formControlName="brandId" >
-                                                                                                        <label for="colorIdd">Renk ID'si</label>
-                                                                                                        <input id="colorIdd"  type="number" placeholder="Renk Id" 
-                                                                                                        formControlName="colorId" >
-                                                                                                        <label for="modelYearr">Model Yılı</label>
-                                                                                                        <input id="modelYearr" type="number" placeholder="Model Yılı" 
-                                                                                                        formControlName="modelYear" >
-                                                                                                        <label for="dailyPricee">Günlük Fiyatı</label>
-                                                                                                        <input id="dailyPricee" type="number" placeholder="Günlük Fiyatı" 
-                                                                                                        formControlName="dailyPrice" >
-                                                                                                        <label for="descriptionn">Açıklaması</label>
-                                                                                                        <textarea id="descriptionn" type="text" placeholder="Açıklama" 
-                                                                                                        formControlName="description" rows="4" cols="50"></textarea>
-                                                                        </div>
-                                                                    </form>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                        [attr.data-bs-target]="customIddForCar(car)"
+                                                        (click)="aracGetir(car)">
+                                                        Aracı Güncelle / Sil
+                                                    </button>
+                                                    <div class="modal fade " [attr.id]="customIdddForCar(car)"
+                                                        tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Aracı
+                                                                        Güncelle</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
                                                                 </div>
-                        
-                                                                
-                        
-                                                                <div class="col-sm-6">
-                                                                    <button type="button" 
-                                                                        style="display: block; width: 100%;"
-                                                                        (click)="updateCar()"
-                                                                        class="btn btn-warning">Güncelle</button>
-                                                                    <button type="button" 
-                                                                        style="display: block; width: 100%;"
-                                                                        (click)="deleteCar()"
-                                                                        class="btn btn-danger">Sil</button>
-                                                                        
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+
+                                                                        <div class="col-sm-6">
+                                                                            <form [formGroup]="carDeleteForm">
+                                                                                <div class="form-group">
+
+                                                                                    <label for="carIdd">Araç
+                                                                                        ID'si</label>
+                                                                                    <input readonly type="number"
+                                                                                        placeholder="İd" 
+                                                                                        formControlName="id">
+                                                                                    <label for="brandselect">Marka
+                                                                                        ID'si</label>
+                                                                                    <!-- <input id="brandIdd" type="number"
+                                                                                        placeholder="Marka Id"
+                                                                                        formControlName="brandId"> -->
+                                                                                        <select formControlName="brandId"  class="form-select" >
+                                                                                            <option [ngValue]="undefined" disabled selected>
+                                                                                              Marka Seç
+                                                                                            </option>
+                                                                                            <option
+                                                                                              *ngFor="let brand of brands"
+                                                                                              [value]="brand.id"
+                                                                                              [selected]="brand.id"
+                                                                                            >
+                                                                                              {{ brand.name }}
+                                                                                            </option>
+                                                                                          </select>
+                                                                                    <label for="colorselect">Renk
+                                                                                        ID'si</label>
+                                                                                    <!-- <input id="colorIdd" type="number"
+                                                                                        placeholder="Renk Id"
+                                                                                        formControlName="colorId"> -->
+                                                                                        <select formControlName="colorId"  class="form-select" >
+                                                                                            <option [ngValue]="undefined" disabled selected>
+                                                                                              Renk Seç
+                                                                                            </option>
+                                                                                            <option
+                                                                                              *ngFor="let color of colors"
+                                                                                              [value]="color.id"
+                                                                                              [selected]="color.id"
+                                                                                            >
+                                                                                              {{ color.name }}
+                                                                                            </option>
+                                                                                          </select>
+                                                                                    <label for="modelYearr">Model
+                                                                                        Yılı</label>
+                                                                                    <input  type="number"
+                                                                                        placeholder="Model Yılı"
+                                                                                        formControlName="modelYear">
+                                                                                    <label for="dailyPricee">Günlük
+                                                                                        Fiyatı</label>
+                                                                                    <input 
+                                                                                        type="number"
+                                                                                        placeholder="Günlük Fiyatı"
+                                                                                        formControlName="dailyPrice">
+                                                                                    <label
+                                                                                        for="descriptionn">Açıklaması</label>
+                                                                                    <textarea 
+                                                                                        type="text"
+                                                                                        placeholder="Açıklama"
+                                                                                        formControlName="description"
+                                                                                        rows="4" cols="50"></textarea>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+
+
+
+                                                                        <div class="col-sm-6">
+                                                                            <button type="button"
+                                                                                style="display: block; width: 100%;"
+                                                                                (click)="updateCar()"
+                                                                                class="btn btn-warning">Güncelle</button>
+                                                                            <button type="button"
+                                                                                style="display: block; width: 100%;"
+                                                                                (click)="deleteCar()"
+                                                                                class="btn btn-danger">Sil</button>
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger"
+                                                                        data-bs-dismiss="modal">Kapat</button>
                                                                 </div>
                                                             </div>
-                        
-                        
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                               </td>
-                                
+                                                </td>
+
                                             </tr>
-                                
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -206,69 +250,74 @@
                                         <th scope="col">Renk Adı</th>
                                         <th scope="col">Renk Id</th>
                                         <th scope="col">İşlem</th>
-                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let color of colors ">
-                        
+
                                         <th scope="row">{{color.name}}</th>
                                         <td>{{color.id}}</td>
                                         <td>
-                        
+
                                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                [attr.data-bs-target]="customIddForColor(color)" (click)="rengiGetir(color)">
+                                                [attr.data-bs-target]="customIddForColor(color)"
+                                                (click)="rengiGetir(color)">
                                                 Rengi Güncelle / Sil
                                             </button>
-                                            
+
                                             <div class="modal fade " [attr.id]="customIdddForColor(color)" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel" >Rengi Güncelle</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Rengi
+                                                                Güncelle</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="row">
-                        
+
                                                                 <div class="col-sm-6">
-                                                                    <form [formGroup]="colorDeleteForm" >
+                                                                    <form [formGroup]="colorDeleteForm">
                                                                         <div class="form-group">
-                                                                            
-                                                                            <input readonly   type="number" placeholder="Renk İd"
-                                                                                                         formControlName="id">
-                                                                            <input  type="text" placeholder="Renk Adı" 
-                                                                                                        formControlName="name" >
+
+                                                                            <input readonly type="number"
+                                                                                placeholder="Renk İd"
+                                                                                formControlName="id">
+                                                                            <input type="text" placeholder="Renk Adı"
+                                                                                formControlName="name">
                                                                         </div>
                                                                     </form>
                                                                 </div>
-                        
-                                                                
-                        
+
+
+
                                                                 <div class="col-sm-6">
                                                                     <button type="button" (click)="updateColor()"
                                                                         style="display: block; width: 100%;"
                                                                         class="btn btn-warning">Güncelle</button>
                                                                     <button type="button" (click)="deleteColor()"
-                                                                        style="display: block; width: 100%;" class="btn btn-danger">Sil</button>
-                                                                        
+                                                                        style="display: block; width: 100%;"
+                                                                        class="btn btn-danger">Sil</button>
+
                                                                 </div>
                                                             </div>
-                        
-                        
+
+
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Kapat</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
-                        
+
                                     </tr>
-                        
+
                                 </tbody>
                             </table>
                         </div>
@@ -315,70 +364,75 @@
                                         <th scope="col">Marka Adı</th>
                                         <th scope="col">Marka Id</th>
                                         <th scope="col">işlem</th>
-                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let brand of brands ">
-                        
+
                                         <th scope="row">{{brand.name}}</th>
                                         <td>{{brand.id}}</td>
                                         <td>
-                                            
-                        
+
+
                                             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                                                [attr.data-bs-target]="customIddForBrand(brand)" (click)="markayiGetir(brand)">
+                                                [attr.data-bs-target]="customIddForBrand(brand)"
+                                                (click)="markayiGetir(brand)">
                                                 Markayı Güncelle / Sil
                                             </button>
-                                            
+
                                             <div class="modal fade " [attr.id]="customIdddForBrand(brand)" tabindex="-1"
                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel" >Markayı Güncelle</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                aria-label="Close"></button>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Markayı
+                                                                Güncelle</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="row">
-                        
+
                                                                 <div class="col-sm-6">
-                                                                    <form [formGroup]="brandDeleteForm" >
+                                                                    <form [formGroup]="brandDeleteForm">
                                                                         <div class="form-group">
-                                                                            
-                                                                            <input readonly   type="number" placeholder="Marka İd"
-                                                                                                         formControlName="id">
-                                                                            <input  type="text" placeholder="Marka Adı" 
-                                                                                                        formControlName="name" >
+
+                                                                            <input readonly type="number"
+                                                                                placeholder="Marka İd"
+                                                                                formControlName="id">
+                                                                            <input type="text" placeholder="Marka Adı"
+                                                                                formControlName="name">
                                                                         </div>
                                                                     </form>
                                                                 </div>
-                        
-                                                                
-                        
+
+
+
                                                                 <div class="col-sm-6">
                                                                     <button type="button" (click)="updateBrand()"
                                                                         style="display: block; width: 100%;"
                                                                         class="btn btn-warning">Güncelle</button>
                                                                     <button type="button" (click)="deleteBrand()"
-                                                                        style="display: block; width: 100%;" class="btn btn-danger">Sil</button>
-                                                                        
+                                                                        style="display: block; width: 100%;"
+                                                                        class="btn btn-danger">Sil</button>
+
                                                                 </div>
                                                             </div>
-                        
-                        
+
+
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kapat</button>
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Kapat</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
-                        
+
                                     </tr>
-                        
+
                                 </tbody>
                             </table>
                         </div>
