@@ -41,6 +41,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { VatAddedPipe } from './pipes/vat-added.pipe';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { VatAddedPipe } from './pipes/vat-added.pipe';
     TermsComponent,
     StoriesComponent,
     VatAddedPipe,
+    ProfileComponent,
     
   ],
   imports: [

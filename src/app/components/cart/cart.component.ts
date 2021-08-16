@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginComponent } from './../login/login.component';
 import { RentalService } from './../../services/rental.service';
@@ -18,7 +19,7 @@ export class CartComponent implements OnInit {
 
   cartItems: CartItem[] = [];
 
-
+  userIdd:number
 
   nowDate = new Date();
   kacGunluk: number
@@ -28,11 +29,14 @@ export class CartComponent implements OnInit {
     private toastrService: ToastrService,
     private titleService: Title,
     private RentalService: RentalService,
-    private authService:AuthService) { }
+    private authService:AuthService,
+    private router:Router) { }
 
   ngOnInit(): void {
+    this.userIdd = this.authService.userId
     this.titleService.setTitle("Sepet")
     this.getCart();
+    this.loginControl();
 
   }
 
@@ -83,7 +87,7 @@ export class CartComponent implements OnInit {
     let rentModell: any[] = []
 
     items.forEach(element => {
-      rentModell.push({ "carId": element.car.id, "userId": this.authService.userId, "rentDate": "2021-08-14", "returnDate": element.car.returnDate })
+      rentModell.push({ "carId": element.car.id, "userId": this.userIdd, "rentDate": "2021-08-14", "returnDate": element.car.returnDate })
     });
 
     this.RentalService.addMultiple(rentModell).subscribe(response => {
@@ -103,5 +107,13 @@ export class CartComponent implements OnInit {
     this.cartItems.splice(0, this.cartItems.length)
   }
 
+
+  loginControl(){
+    if (this.authService.userId == undefined) {
+      this.toastrService.info("Sisteme Giriş Yaptıktan Sonra Sayfayı Yenilemeniz durumunda oturumunuz sonlandırılır.")
+      this.router.navigate(["cars"])
+      localStorage.clear()
+    }
+  }
 
 }

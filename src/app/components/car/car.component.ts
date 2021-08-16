@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Title } from '@angular/platform-browser';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrandService } from './../../services/brand.service';
@@ -19,6 +20,7 @@ export class CarComponent implements OnInit {
   /* window.console.log.apply(console, ["\n %c Made with love \u2665 And Coffee - By Ulaş Müezzinoğlu \n",
     "color: #000; background: #fd0; padding:5px 0;"]) */
 
+  usId:number
 
   cars: Car[] = []
   dataLoadedForCar = false;
@@ -31,10 +33,12 @@ export class CarComponent implements OnInit {
     private activatedRoute:ActivatedRoute,
     private cartService:CartService,
     private toastrService:ToastrService,
-    private titleService:Title) { }
+    private titleService:Title,
+    private authService:AuthService) { }
 
   ngOnInit(): void {
     
+
     this.activatedRoute.params.subscribe(params => {
 
       if (params['brandId'] && params['colorId']) {

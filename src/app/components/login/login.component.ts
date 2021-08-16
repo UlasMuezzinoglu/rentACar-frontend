@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   nowDate: Date = new Date()
 
+  temp:number
 
   constructor(private formBuilder: FormBuilder,
     private title:Title,
@@ -48,12 +49,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("lastName",response.data.lastName)
         //localStorage.setItem('userId', response.data.userId.toString())
         this.authService.userId = response.data.userId
+        this.temp = response.data.userId
         this.router.navigate(["cars"])
       },responseError =>{
         this.toastrService.error(responseError.error)
       })
     }
   }
+  
 
 
 }

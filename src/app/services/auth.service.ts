@@ -1,6 +1,5 @@
 import { RegisterModel } from './../models/registerModel';
 import { TokenModel } from './../models/tokenModel';
-import { ResponseModel } from './../models/responseModel';
 import { HttpClient } from '@angular/common/http';
 import { LoginModel } from './../models/loginModel';
 import { Injectable } from '@angular/core';
@@ -10,6 +9,7 @@ import { SingleResponseModel } from '../models/singleResponseModel';
   providedIn: 'root'
 })
 export class AuthService {
+
 
   apiUrl = "https://localhost:44341/api/Auth/"
 
@@ -34,6 +34,7 @@ export class AuthService {
       return false;
     }
   }
+  
 
 
 }

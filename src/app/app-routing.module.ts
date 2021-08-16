@@ -1,3 +1,4 @@
+import { ProfileComponent } from './components/profile/profile.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { TermsComponent } from './components/terms/terms.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path:"register", component:RegisterComponent,canActivate:[RegisterGuard]},
   {path:"stories", component:StoriesComponent},
   {path:"cart", component:CartComponent,canActivate:[LoginGuard]},
+  {path:"profile", component:ProfileComponent,canActivate:[LoginGuard]},
   {path: '404', component: NotfoundComponent},
   {path: '**', redirectTo: '/404'},
 
