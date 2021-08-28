@@ -49,7 +49,7 @@ export class CarDetailComponent implements OnInit {
         this.createDatePickerForm();
         this.nowDate.setDate(this.nowDate.getDate()+1)
         
-
+      
        // console.log(this.nowDate.getMonth().toString())
        
 

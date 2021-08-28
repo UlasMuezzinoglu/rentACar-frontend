@@ -80,13 +80,13 @@
     <div class="col-lg" >
       <h1 class="display-1 fw-bold">{{car.brandName}}</h1>
       <h2  class="display-3 fw-light">
-        <span style="visibility: hidden;">açıklaması</span>
+        <span id="carModel">{{car.model}}</span>
         <span class="border border-secondary rounded-1 px-3">
           {{car.modelYear}}
         </span>
       </h2>
       <div>
-        <h6 class="display-4 fw-light">Açıklaması</h6>
+        <br>
         {{car.description}} 
       </div>
       <h4>Sadece {{car.dailyPrice | currency: "TRY":"₺"}}</h4>

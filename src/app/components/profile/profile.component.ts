@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
   user :User
 
   ngOnInit(): void {
+    this.loginControl()
     this.title.setTitle("Profil")
     this.id = this.authService.userId
     this.createProfileAddForm()
@@ -78,4 +79,11 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  loginControl(){
+    if (this.authService.userId == undefined) {
+      this.toastrService.info("Sisteme Giriş Yaptıktan Sonra Sayfayı Yenilemeniz durumunda oturumunuz sonlandırılır.")
+      this.router.navigate(["cars"])
+      localStorage.clear()
+    }
+  }
 }

@@ -37,19 +37,41 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="brandId">Marka</label>
-                                                <div class="form-group">
-                                                    <input type="number" id="brandId" formControlName="brandId"
-                                                        class="form-control" placeholder="Marka İd" />
-                                                </div>
+                                           
+                                                <select formControlName="brandId"  class="form-select" >
+                                                    <option [ngValue]="undefined" disabled selected>
+                                                      Marka Seç
+                                                    </option>
+                                                    <option
+                                                      *ngFor="let brand of brands"
+                                                      [value]="brand.id"
+                                                      [selected]="brand.id"
+                                                    >
+                                                      {{ brand.name }}
+                                                    </option>
+                                                  </select>
+                                                
+                                                
                                             </div>
 
                                             <div class="mb-3">
-                                                <label for="colorId">Renk</label>
+                                                <!-- <label for="colorId">Renk</label>
                                                 <div class="form-group">
                                                     <input type="number" id="colorId" formControlName="colorId"
                                                         class="form-control" placeholder="Renk İd" />
-                                                </div>
+                                                </div> -->
+                                                <select formControlName="colorId"  class="form-select" >
+                                                    <option [ngValue]="undefined" disabled selected>
+                                                      Renk Seç
+                                                    </option>
+                                                    <option
+                                                      *ngFor="let color of colors"
+                                                      [value]="color.id"
+                                                      [selected]="color.id"
+                                                    >
+                                                      {{ color.name }}
+                                                    </option>
+                                                  </select>
                                             </div>
 
                                             <div class="mb-3">

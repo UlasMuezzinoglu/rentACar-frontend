@@ -44,7 +44,7 @@
    <div  class="card" style="width: 18rem ;" *ngFor="let car of cars | carfilter:filterText ">
     <img id="cardHeader"src="{{ carImageBasePath }}{{ getCarImage(car) }}" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">{{car.brandName}}</h5>
+      <h5 class="card-title">{{car.brandName}}</h5>     
       <p class="card-text">{{car.description}}</p>
       <p class="card-text">Günlük Kiralama Ücreti : {{car.dailyPrice | currency: "TRY":"₺"}}</p>
       <p *ngIf="car.returnDate > nowDate" class="card-text">Bu Araba Kiralanamaz Çünkü Kirada</p>
